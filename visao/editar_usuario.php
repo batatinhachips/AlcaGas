@@ -75,10 +75,10 @@ $usuarios = $usuariosRepositorio->buscarTodosUsuarios();
                     <input type="hidden" name="id_usuario" value="<?= $usuario["id_usuario"] ?>">
 
                     <label for="nome" class="titulo-campo">Nome:</label>
-                    <input type="text" name="nome" value="<?= $usuario["nome"] ?>" class="custom-input"><br>
+                    <input type="text" name="nome" placeholder="Digite seu nome" value="<?= $usuario["nome"] ?>" class="custom-input"><br>
 
                     <label for="email" class="titulo-campo">Email:</label>
-                    <input type="text" name="email" value="<?= $usuario["email"] ?>" class="custom-input"><br>
+                    <input type="text" name="email" placeholder="Digite seu email" value="<?= $usuario["email"] ?>" class="custom-input"><br>
 
                     <label for="senha" class="titulo-campo">Nova Senha:</label>
                 <input type="password" class="form-control custom-input" id="senha" placeholder="Digite uma senha" name="senha" required>
