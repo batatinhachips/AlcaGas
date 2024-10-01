@@ -1,54 +1,59 @@
 <?php
 require_once '../modelo/login.php';
-require_once '../controladora/conexao.php';
+require_once 'conexao.php'; // Certifique-se de que o caminho está correto
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nome = $_POST["nome"];
-    $email = $_POST["email"];
+    // Obter dados do formulário
+    $nome = trim($_POST["nome"]);
+    $email = trim($_POST["email"]);
     $senha = $_POST["senha"];
     $confirmarsenha = $_POST["confirmarsenha"];
-    $papel = $_POST["papel"];
-    $cpf = $_POST["cpf"];
-    $telefone = $_POST["telefone"];
-    $cep = $_POST["cep"];
-    $logradouro = $_POST["logradouro"];
-    $complemento = $_POST["complemento"];
-    $numero = $_POST["numero"];
-    $bairro = $_POST["bairro"];
-    $cidade = $_POST["cidade"];
-
+    $papel = trim($_POST["papel"]);
+    $cpf = isset($_POST["cpf"]) ? trim($_POST["cpf"]) : null;
+    $telefone = isset($_POST["telefone"]) ? trim($_POST["telefone"]) : null;
+    $cep = isset($_POST["cep"]) ? trim($_POST["cep"]) : null;
+    $logradouro = isset($_POST["logradouro"]) ? trim($_POST["logradouro"]) : null;
+    $complemento = isset($_POST["complemento"]) ? trim($_POST["complemento"]) : null;
+    $numero = isset($_POST["numero"]) ? trim($_POST["numero"]) : null;
+    $bairro = isset($_POST["bairro"]) ? trim($_POST["bairro"]) : null;
+    $cidade = isset($_POST["cidade"]) ? trim($_POST["cidade"]) : null;
 
     // Validação básica
+    $erros = [];
     if (empty($nome) || empty($email) || empty($senha) || empty($confirmarsenha) || empty($papel)) {
-        echo "Todos os campos são obrigatórios.";
-        exit;
+        $erros[] = "Todos os campos são obrigatórios.";
     }
 
     if ($senha !== $confirmarsenha) {
-        header("Location: ../visao/cadastro.php?erro=2");
+        $erros[] = "As senhas não coincidem.";
+    }
+
+
+    if (!empty($erros)) {
+        header("Location: ../visao/cadastro.php?erro=" . urlencode(implode(", ", $erros)));
         exit();
     }
 
-    // Verificar se o papel é válido
-    $papel_valido = ['admin', 'usuario'];
-    if (!in_array($papel, $papel_valido)) {
-        echo "Papel inválido.";
-        exit;
-    }
-
-    // Criptografar a senha
-    $senha_hash = password_hash($senha, PASSWORD_BCRYPT);
-
-    // Criar uma instância da classe Usuario
+    // Instanciar a classe Usuario com a conexão
     $usuario = new Usuario($conn);
 
-    // Cadastrar o usuário
-    if ($usuario->cadastrar($nome, $email, $senha_hash, $papel, $cpf, $telefone, $cep, $logradouro, $complemento, $numero, $bairro, $cidade)) {
+    // Cadastrar usuário ou administrador
+       if ($usuario->cadastrar($nome, $email, $senha, $papel, $cpf, $telefone, $cep, $logradouro, $complemento, $numero, $bairro, $cidade)) {
         // Redirecionar para a página de sucesso após o cadastro
-        header("Location: ../visao/cadastrarcliente_sucesso.php");
+       if ($papel === "admin") {
+            header("Location: ../visao/cadastraradmin_sucesso.php");
+        } else {
+            header("Location: ../visao/cadastrarcliente_sucesso.php");
+        }
         exit();
     } else {
-        echo "Erro ao cadastrar. Tente novamente.";
+        echo "Erro ao cadastrar usuário: " . $resultado;
     }
 }
 ?>

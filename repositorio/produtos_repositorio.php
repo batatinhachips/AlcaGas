@@ -9,13 +9,20 @@ class produtoRepositorio{
     }
 
     public function cadastrar(produto $produto){
-        $sql = "INSERT INTO produtos (nome, descricao, imagem, preco) VALUES (?,?,?,?)";
+
+        $nome = $produto->getNome();
+        $descricao = $produto->getDescricao();
+        $preco = $produto->getPreco();
+        $imagem = $produto->getImagem();
+
+        $sql = "INSERT INTO produtos (nome, descricao, preco, imagem) VALUES (?,?,?,?)";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param("ssss",
-            $produto->getNome(),
-            $produto->getDescricao(),
-            $produto->getImagem(),
-            $produto->getPreco(),
+        $stmt->bind_param("ssds",
+            $nome,
+            $descricao,
+            $preco,
+            $imagem
+            
     );
        // Executa a consulta preparada e verifica o sucesso
        $success = $stmt->execute();
@@ -41,8 +48,8 @@ class produtoRepositorio{
                     $row['id'],
                     $row['nome'],
                     $row['descricao'],
-                    $row['imagem'],
                     $row['preco'],
+                    $row['imagem']
 
                 );
                 $produtos[] = $produto;
@@ -77,8 +84,9 @@ class produtoRepositorio{
                 $row['id'],
                 $row['nome'],
                 $row['descricao'],
-                $row['imagem'],
-                $row['preco']
+                $row['preco'], 
+                $row['imagem']
+                
             );
         }
 

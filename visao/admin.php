@@ -6,7 +6,6 @@ session_start();
 
 <head>
   <title>ADMINISTRAÇÃO</title>
-
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -21,10 +20,8 @@ session_start();
   <script src="../recursos/js/jquery-3.5.1.slim.min.js"></script>
   <script src="../recursos/js/popper.min.js"></script>
   <script src="../recursos/js/script.js"></script>
-
-
-  <!-- FIM DOS LINKS -->
 </head>
+
 <?php
 include '../controladora/conexao.php';
 include '../modelo/produtos.php';
@@ -33,103 +30,85 @@ include "../controladora/autenticacao.php";
 
 $produtosRepositorio = new produtoRepositorio($conn);
 $produtos = $produtosRepositorio->buscarTodos();
-
-
 ?>
 
 <body>
 
   <nav class="navbar navbar-expand-sm navbar-custom navbar-dark fixed-top">
     <div class="container-fluid">
-      <!-- NAVBAR -->
       <a class="navbar-brand" href="/">
-        <img src="../recursos/imagens/logo_nav.png" alt="Logo da Empresa" style="height: 40px;">
+        <img src="../recursos/imagens/logo.png" alt="Logo da Empresa" style="height: 40px;">
       </a>
-      <!-- BOTAO PARA EXIBIR O MENU EM TELAS MENORES -->
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <!-- Links de navegação e botões -->
-      <!-- Botões de Logar e Cadastrar -->
-      <div class="botao-admin">
-        <a class="btn btn-light ms-2" href="../visao/cadastrar_admin.php">Novo Admin</a>
-        <a class="btn btn-light ms-2" href="../visao/cadastrar_produtos.php">Novo Produto</a>
+
+      <div class="menu-icon" onclick="toggleMenu()">
+        <i class="bi bi-list"></i>
+      </div>
+      <nav id="menu" class="menu">
+        <?php
+        if (isset($_SESSION["nome_usuario"])) {
+          echo "<div class='user-name'>" . $_SESSION["nome_usuario"] . "</div>";
+        }
+        ?>
+        <div class="dropdown-content">
+          <?php if (isset($_SESSION["papel"]) && $_SESSION["papel"] == "admin") { ?>
+            <a class="dropdown-item" href="/">Voltar</a>
+          <?php } ?>
+          <?php if (isset($_SESSION["nome_usuario"])) { ?>
+            <a class="dropdown-item" href="../controladora/logout.php">Sair</a>
+          <?php } else { ?>
+            <a class="dropdown-item" href="../visao/formLogin.php">Login</a>
+            <a class="dropdown-item" href="../visao/cadastrar_cliente.php">Cadastre-se</a>
+          <?php } ?>
+        </div>
+      </nav>
+    </div>
+      <div id="navbarNav" class="navbar-nav">
+        <ul class="navbar-navButton">
+          <li class="nav-item">
+            <a class="btn btn-light ms-2" href="../visao/cadastrar_admin.php">Novo Admin</a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-light ms-2" href="../visao/cadastrar_produtos.php">Novo Produto</a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-light ms-2" href="admin_tabela.php">Tabela Admins</a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-light ms-2" href="usuario_tabela.php">Tabela Clientes</a>
+          </li>
+        </ul>
       </div>
     </div>
-
-    <!-- Ícone do Menu Hambúrguer -->
-    <div class="menu-icon" onclick="toggleMenu()">
-      <i class="bi bi-list"></i>
-    </div>
-
-    <!-- Menu Dropdown -->
-    <nav id="menu" class="menu">
-      <?php
-      if (isset($_SESSION["nome_usuario"])) {
-        echo "<div class='user-name'>" . $_SESSION["nome_usuario"] . "</div>";
-      }
-      ?>
-      <div class="dropdown-content">
-        <?php if (isset($_SESSION["nome_usuario"])) { ?>
-          <a class="dropdown-item" href="../controladora/logout.php">Sair</a>
-        <?php } else { ?>
-          <a class="dropdown-item" href="formLogin.php">Login</a>
-        <?php } ?>
-      </div>
-    </nav>
-    </div>
   </nav>
-  </div>
 
-  <!-- LINKS DE NAVEGACAO E BOTOES -->
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav ms-auto d-flex align-items-center">
-    </ul>
-  </div>
-  </div>
-  </nav>
+
+
 
   <!-- SESSAO DO CATALOGO -->
   <section id="services" class="services">
     <div class="container" data-aos="fade-up">
-      <div class="section-title">
-        <br>
-        <br>
-        <br>
-      </div>
-
-      <div class="row">
+      <div class="rowCard">
         <?php foreach ($produtos as $produto) : ?>
-          <tr>
-            <div class="col">
-              <div class="card custom-card">
-                <img src="../recursos/imagens/<?= $produto->getImagem() ?>" alt="">
-                <div class="custom-card-body">
-                  <h5 class="custom-card-title"><?= $produto->getNome() ?></a></h5>
-                  <p class="custom-card-text"><?= $produto->getDescricao() ?></p>
-                  <h4>R$<?= $produto->getPreco() ?></h4>
+          <div class="col">
+            <div class="card custom-card">
+              <img src="../recursos/imagens/<?= $produto->getImagem() ?>" alt="">
+              <div class="custom-card-body">
+                <h5 class="custom-card-title"><?= $produto->getNome() ?></h5>
+                <p class="custom-card-text"><?= $produto->getDescricao() ?></p>
+                <h4>R$ <?= number_format($produto->getPreco(), 2, ',', '.') ?></h4>
+                <form action="../visao/editar_produtos.php" method="POST" style="margin-bottom: 10px;">
+                  <input type="hidden" name="id" value="<?= $produto->getId(); ?>">
+                  <input type="submit" class="botao-editar" value="Editar" style="background-color: green; color: white; border: none; border-radius: 15px; padding: 6px 11px; font-weight: 500; font-family: Poppins, sans-serif;">
+                </form>
 
-                  <form action="../visao/editar_produtos.php" method="POST" style="margin-bottom: 10px;">
-                    <input type="hidden" name="id" value="<?= $produto->getId(); ?>">
-                    <input type="submit" class="botao-editar" value="Editar" style="background-color: green; color: white; border: none; border-radius: 15px; padding: 6px 11px; font-weight: 500; font-family: Poppins, sans-serif;">
-                  </form>
-                  <td>
-                    <?php if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['acao']) && $_POST['acao'] === 'excluir') {
-                      $idParaExcluir = $_POST['id'];
-
-                      $produtosRepositorio->excluirProdutosPorId($idParaExcluir);
-                    } ?>
-                  </td>
-                  <td>
-                    <form action="../controladora/processar_exclusao.php" method="POST" style="margin-top: 10px;">
-                      <input type="hidden" name="id" value="<?= $produto->getId(); ?>">
-                      <input type="submit" class="botao-excluir" value="Excluir" style="background-color: red; color: white; border: none; border-radius: 15px; padding: 6px 8px; font-weight: 500; font-family: Poppins, sans-serif; transition: background-color 0.3s;">
-                    </form>
-                </div>
+                <form action="../controladora/processar_exclusao.php" method="POST" style="margin-top: 10px;">
+                  <input type="hidden" name="id" value="<?= $produto->getId(); ?>">
+                  <input type="hidden" name="tipo" value="produto">
+                  <input type="submit" class="botao-excluir" value="Excluir" style="background-color: red; color: white; border: none; border-radius: 15px; padding: 6px 8px; font-weight: 500; font-family: Poppins, sans-serif; transition: background-color 0.3s;">
+                </form>
               </div>
-              </td>
             </div>
-          </tr>
+          </div>
         <?php endforeach; ?>
       </div>
     </div>

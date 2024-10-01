@@ -1,46 +1,29 @@
 <?php
-class produto {
+class Produto {
     /* private $conn; //Sua conexão com o banco de dados */
-    private ?int $id;
-    private string $nome;
-    private string $descricao;
-    private string $preco;
-    private string $imagem;
-
-    /* public funciton __construct($conn) {
-        $this->conn = $conn;
-    } 
-
-    public function listarProdutos(){
-        $sql = "SELECT * FROM cafe";
-        $result = $this->conn->query($sql);
+    private  $id;
+    private  $nome;
+    private  $descricao;
+    private  $preco;
+    private  $imagem;
     
-    $produtos = array();
-
-    if ($result->num_rows > 0){
-        while ($row = $result->fetch_assoc()){
-            $produtos[]= $row;
-        }
-    }
-    return $produtos;
-}
-*/
 
 
-    public function __construct(
-        ?int $id,
+        public function __construct(
+        $id,
+        $nome,
+        $descricao,
+        $preco,
+        $imagem
 
-        string $nome,
-        string $descricao,
-        string $imagem = "logo.png",
-        string $preco)
-
+    )
     {
         $this->id = $id;
         $this->nome = $nome;
         $this->descricao = $descricao;
-        $this->imagem = $imagem;
         $this->preco = $preco;
+        $this->imagem = $imagem;
+        
     }    
 
 
@@ -121,7 +104,7 @@ class produto {
     {
         return $this->imagem;
     }
-    public function getImagemDiretorio(): string
+    public function getImagemDiretorio()
     {
         return "../recursos/img/".$this->imagem;
     }
@@ -138,6 +121,7 @@ class produto {
 
         return $this;
     }
+
 }
 
 ?>

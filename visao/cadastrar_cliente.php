@@ -18,6 +18,19 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
   <title>NOVO CADASTRO</title>
+  <!-- NAVBAR -->
+<nav class="navbar navbar-expand-sm navbar-custom navbar-dark fixed-top">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto d-flex align-items-center">
+        <li class="nav-item">
+          <a class="btn btn-dark" href="../index.php" style="margin-left: auto;">Voltar</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+</head>
 
 </head>
 
@@ -92,6 +105,7 @@
             </div>
           </div>
         </div>
+        <!-- Campo oculto para definir o papel como 'usuario' -->
         <input type="hidden" name="papel" value="usuario">
         <button type="submit" class="btn btn-custom-primary btn-block">Cadastrar</button>
         <a href="formLogin.php" class="btn btn-custom-primary btn-block">Login</a>

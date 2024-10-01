@@ -1,8 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<?php
-session_start();
-?>
 
 <head>
   <title>Alcântara Gás</title>
@@ -26,11 +23,11 @@ session_start();
 </head>
 
 <?php
-include 'controladora/conexao.php';
-include 'modelo/produtos.php';
-include 'repositorio/produtos_repositorio.php';
-include "controladora/autenticacao.php";
-
+session_start();
+include_once './controladora/conexao.php';
+include_once './modelo/produtos.php';
+include_once './repositorio/produtos_repositorio.php';
+include_once "./controladora/autenticacao.php";
 
 $produtosRepositorio = new produtoRepositorio($conn);
 $produtos = $produtosRepositorio->buscarTodos();
@@ -39,45 +36,18 @@ $produtos = $produtosRepositorio->buscarTodos();
 <body>
   <!-- Botão do WhatsApp -->
   <a id="robbu-whatsapp-button" target="_white" href="https://api.whatsapp.com/send?phone=5511958780556&text=Ol%C3%A1,%20eu%20gostaria%20de%20fazer%20um%20pedido!%0AProduto(s):%0AQuantidade:%0AMeu%20endere%C3%A7o:%0AMeu%20nome:%0ARetirar%20ou%20entrega:">
-      <div class="rwb-tooltip"style="background-color: #fff;" >Faça o seu pedido agora!</div>
-      <img src="https://cdn.positus.global/production/resources/robbu/whatsapp-button/whatsapp-icon.svg">
+    <div class="rwb-tooltip" style="background-color: #fff;">Faça o seu pedido agora!</div>
+    <img src="https://cdn.positus.global/production/resources/robbu/whatsapp-button/whatsapp-icon.svg">
   </a>
 
   <nav class="navbar navbar-expand-sm navbar-custom navbar-dark fixed-top">
     <div class="container-fluid">
-      <!-- NAVBAR -->
       <a class="navbar-brand" href="/">
-        <img src="recursos/imagens/logo_nav.png" alt="Logo da Empresa" style="height: 40px;">
+        <img src="recursos/imagens/logo.png" alt="Logo da Empresa" style="height: 40px;">
       </a>
-
-      <!-- BOTAO PARA EXIBIR O MENU EM TELAS MENORES -->
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <!-- Links de navegação e botões -->
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto d-flex align-items-center">
-          <li class="nav-item">
-            <a class="nav-link active" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" href="#services">Produtos</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" href="#empresa">Empresa</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" href="#footer">Localização</a>
-          </li>
-        </ul>
-      </div>
-
-      <!-- Ícone do Menu Hambúrguer -->
       <div class="menu-icon" onclick="toggleMenu()">
         <i class="bi bi-list"></i>
       </div>
-
-      <!-- Menu Dropdown -->
       <nav id="menu" class="menu">
         <?php
         if (isset($_SESSION["nome_usuario"])) {
@@ -97,8 +67,25 @@ $produtos = $produtosRepositorio->buscarTodos();
         </div>
       </nav>
     </div>
+    <!-- Links de navegação e botões -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto d-flex align-items-center">
+        <li class="nav-item">
+          <a class="nav-link active" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="#services">Produtos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="#empresa">Empresa</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="#footer">Localização</a>
+        </li>
+      </ul>
+    </div>
+    </div>
   </nav>
-
 
   <!-- LINKS DE NAVEGACAO E BOTOES -->
   <div class="collapse navbar-collapse" id="navbarNav">
@@ -120,28 +107,19 @@ $produtos = $produtosRepositorio->buscarTodos();
     <!-- Slideshow/carrossel -->
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img src="recursos/imagens/banner.jpg" alt="Banner" class="d-block w-100 carousel-image">
+        <img src="recursos/imagens/banner.jpg" alt="Banner" class="d-block w-90 carousel-image">
       </div>
       <div class="carousel-item">
-        <img src="recursos/imagens/faixada.jpg" alt="Faixada" class="d-block w-100 carousel-image">
+        <img src="recursos/imagens/faixada.jpg" alt="Faixada" class="d-block w-90 carousel-image">
       </div>
-
     </div>
-
-    <!-- Controles/Icones esquerdo e direito -->
-    <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon"></span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
-      <span class="carousel-control-next-icon"></span>
-    </button>
   </div>
 
   <!-- SESSAO DO CATALOGO -->
   <div class="custom-title">Os nossos produtos</div>
   <section id="services" class="services">
     <div class="container" data-aos="fade-up">
-      <div class="row">
+      <div class="rowCard">
         <?php foreach ($produtos as $produto) : ?>
           <div class="col">
             <div class="card custom-card">
@@ -157,13 +135,14 @@ $produtos = $produtosRepositorio->buscarTodos();
         <?php endforeach; ?>
       </div>
       <div id="entrega">*valores dos produtos a retirar*</div>
+      <br>
       <!-- BOTÃO WHATSAPP CENTRO -->
-       <div>
-      <a href="https://api.whatsapp.com/send/?phone=5511958780556&text=Olá%2C+eu+gostaria+de+fazer+um+pedido%21%0AProduto%28s%29%3A%0AQuantidade%3A%0AMeu+endereço%3A%0AMeu+nome%3A%0ARetirar+ou+entrega%3A&type=phone_number&app_absent=0" class="whatsapp-link" target="_blank">
-        <button class="btn btn-success text-white whatsapp">
-          <i class="fab fa-whatsapp icon-spacing"></i> Faça um pedido!
-        </button>
-        </div>
+      <div>
+        <a href="https://api.whatsapp.com/send/?phone=5511958780556&text=Olá%2C+eu+gostaria+de+fazer+um+pedido%21%0AProduto%28s%29%3A%0AQuantidade%3A%0AMeu+endereço%3A%0AMeu+nome%3A%0ARetirar+ou+entrega%3A&type=phone_number&app_absent=0" class="whatsapp-link" target="_blank">
+          <button class="btn btn-success text-white whatsapp">
+            <i class="fab fa-whatsapp icon-spacing"></i> Faça um pedido!
+          </button>
+      </div>
       </a>
     </div>
 

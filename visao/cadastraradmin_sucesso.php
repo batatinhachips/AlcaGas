@@ -16,7 +16,6 @@
 </head>
 
 <body>
-
   <body class="login_bg">
     <main>
       <div class="login-title text-center">

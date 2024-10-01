@@ -4,9 +4,48 @@
 }
 
 body {
-  font-family: 'Poppins', sans-serif; /* Aplicar a fonte Poppins ao corpo */
+  font-family: 'Poppins', sans-serif;
   margin: 0;
   padding: 0;
+}
+
+.navbar {
+  margin-bottom: 0;
+  position: relative;
+}
+
+.navbar-nav {
+  margin-right: 7rem;
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.container-fluid {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+#menu {
+  display: none;
+  position: absolute;
+  top: 6rem;
+  right: 0;
+  background-color: #333;
+  color: white;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.2);
+  z-index: 2000;
+}
+
+#menu.show {
+  display: block;
+}
+
+.menu-icon.show {
+  display: none;
 }
 
 * {
@@ -15,7 +54,7 @@ body {
   box-sizing: border-box;
 }
 
-#demo{
+#demo {
   padding-top: 6.625rem;
 }
 
@@ -26,13 +65,21 @@ body {
   filter: brightness(50%);
 }
 
-/* Títulos personalizados */
+.carousel-item img {
+  width: 100%;
+  height: auto;
+}
+
+.carousel {
+  margin-top: -6.625rem;
+}
+
 .custom-title {
   position: relative;
   font-size: 2rem;
   text-align: center;
-  margin: 7vh 10vw 7vh;
-  display: inline-block; /* Ajusta a linha ao comprimento do texto */
+  margin: 7rem 10vw;
+  display: inline-block;
   font-weight: 500;
 }
 
@@ -40,22 +87,21 @@ body {
   content: '';
   position: absolute;
   left: 0;
-  bottom: -5px; /* Ajuste a distância entre o texto e a linha */
+  bottom: -0.5rem;
   width: 100%;
-  height: 3px;
-  background-color: #145c50; /* Cor da linha */
-
+  height: 0.2rem;
+  background-color: #145c50;
 }
 
-.whatsapp{
+.whatsapp {
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 0 auto;
-  border-radius: 3vw;
-  width: 11vw;
-  height: 5vh;
-  font-size: 16px;
+  border-radius: 2.0rem; /* Ajuste em rem */
+  width: 12rem; /* Ajuste em rem */
+  height: 4rem; /* Ajuste em rem */
+  font-size: 1rem; /* Ajuste em rem */
 }
 
 .whatsapp-link {
@@ -63,188 +109,235 @@ body {
   color: inherit; /* Herda a cor do botão, que deve ser branca ou outra cor desejada */
 }
 
-
 .icon-spacing {
-  margin-right: 0.4vw; /* Ajuste o valor conforme necessário */
+  margin-right: 0.4rem;
 }
 
-/* Container de produtos */
 .produtos-container {
-  max-width: 100vw; /* Ajuste conforme necessário */
+  max-width: 100vw;
   justify-content: center;
   display: flex;
 }
 
-.produtos-row {
-  display: flex;
-  flex-wrap: wrap; /* Garante que os cards quebrem para a linha seguinte se necessário */
-  justify-content: center;
-}
-
-
-/* Espaçamento adicional entre as seções */
-.produtos-container {
-  margin-bottom: 2vh;
-}
-
-.catalogo {
-  margin-bottom: 40vh;
-}
-
-/* Contêiner principal do catálogo */
-.container {
-  display: flex;
-  flex-direction: column;
+/* Estilo geral para a seção de serviços */
+.services {
   padding: 20px;
 }
 
-.row {
+/* Container dos cards */
+.rowCard {
   display: flex;
-  flex-wrap: wrap; /* Permite que os itens se movam para a linha seguinte se necessário */
-  gap: 20px; /* Espaçamento entre os cards */
+  flex-wrap: wrap;
+  justify-content: space-between; /* Espaçamento uniforme entre os cards */
 }
 
-/* Defina o tamanho fixo para as colunas */
+/* Estilo para cada coluna (card) */
 .col {
-  flex: 0 1 240px; /* Largura fixa das colunas */
-  box-sizing: border-box;
+  flex: 1 1 calc(20% - 20px); /* 20% da largura menos margem */
+  margin: 10px; /* Margem entre os cards */
+  box-sizing: border-box; /* Para incluir padding e border no cálculo da largura */
 }
 
-/* Card */
-.card.custom-card {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  overflow: hidden;
-  background-color: #fff;
-  text-align: center;
-  width: 100%; /* Garante que o card ocupe toda a largura da coluna */
-  height: 100%; /* Define uma altura fixa para todos os cards */
-  display: flex;
-  flex-direction: column;
+/* Estilo do card */
+.custom-card {
+  background-color: #fff; /* Cor de fundo do card */
+  border: 1px solid #ddd; /* Borda do card */
+  border-radius: 8px; /* Bordas arredondadas */
+  overflow: hidden; /* Para esconder o conteúdo que sai da borda */
+  transition: transform 0.2s; /* Efeito de transição para hover */
 }
 
-.card.custom-card img {
-  width: 100%;
+.custom-card:hover {
+  transform: scale(1.05); /* Efeito de aumento ao passar o mouse */
 }
 
+/* Estilo da imagem do produto */
+.custom-card img {
+  width: 100%; /* A imagem ocupa toda a largura do card */
+  height: auto; /* Altura automática para manter proporções */
+}
+
+/* Estilo do corpo do card */
 .custom-card-body {
-  padding: 15px;
-  flex: 1; /* Faz com que o corpo do card expanda para preencher o espaço disponível */
+  padding: 15px; /* Padding interno do card */
 }
 
+/* Estilo do título do card */
 .custom-card-title {
-  font-size: 18px;
-  margin: 10px 0;
+  font-size: 1.8rem;
+  margin: 1rem 0;
 }
 
 .custom-card-text {
-  font-size: 14px;
+  font-size: 1rem;
   color: #666;
+  text-align: left;
 }
+.navbar-navButton {
+  display: flex; /* Equivalente a d-flex */
+  align-items: center; /* Alinha verticalmente ao centro */
+  justify-content: center; /* Alinha horizontalmente ao centro */
+  margin-left: auto; /* Equivalente a ms-auto */
+}
+.nav-item {
+  /*! max-width: 50%; */
+
+  white-space: nowrap;
+
+  display: flex;
+  /*! margin-left: px; */
+}
+
+
+/* Responsividade */
+@media (max-width: 1200px) {
+  .col {
+    flex: 1 1 100%; /* 4 cards por linha em telas médias */
+  }
+  .navbar-navButton {
+  display: flex;
+  padding: 2px;
+}
+.nav-item {
+  white-space: nowrap;
+  display: flex;
+}
+.btn.btn-light.ms-2 {
+  max-width: 100%;
+  font-size: 6px;
+  /*! overflow: hidden; */
+}
+}
+
+@media (max-width: 992px) {
+  .col {
+    flex: 1 1 100%; /* 3 cards por linha em telas menores */
+  }
+  .navbar-navButton {
+  display: flex;
+  padding: 2px;
+}
+.nav-item {
+  white-space: nowrap;
+  display: flex;
+}
+.btn.btn-light.ms-2 {
+  max-width: 100%;
+  font-size: 6px;
+  /*! overflow: hidden; */
+}
+}
+
+@media (max-width: 768px) {
+  .col {
+    flex: 1 1 100%; /* 2 cards por linha em telas pequenas */
+  }
+  .navbar-navButton {
+  display: flex;
+  padding: 2px;
+}
+.nav-item {
+  white-space: nowrap;
+  display: flex;
+}
+.btn.btn-light.ms-2 {
+  max-width: 100%;
+  font-size: 6px;
+  /*! overflow: hidden; */
+}
+}
+
+@media (max-width: 576px) {
+  .col {
+    flex: 1 1 100%; /* 1 card por linha em telas muito pequenas */
+  }
+  
+  .navbar-navButton {
+  display: flex;
+  padding: 2px;
+}
+.nav-item {
+  white-space: nowrap;
+  display: flex;
+}
+.btn.btn-light.ms-2 {
+  max-width: 100%;
+  font-size: 6px;
+  /*! overflow: hidden; */
+}
+}
+
+ 
+
+
 
 .btn.btn-primary {
   background-color: #007bff;
   border: none;
   color: #fff;
-  padding: 10px 20px;
+  padding: 1rem 2rem;
   text-decoration: none;
-  border-radius: 4px;
+  border-radius: 0.4rem;
   display: inline-block;
-  margin-top: auto; /* Move o botão para o final do card */
+  margin-top: auto;
 }
 
 #entrega {
   text-align: center;
-  font-size: 12px;
+  font-size: 1.2rem;
   color: #666;
-  margin-top: 20px;
-}
-
-/* Media Queries para Responsividade */
-
-/* Para telas menores que 1200px (como tablets em modo paisagem) */
-@media (max-width: 1200px) {
-  .col {
-    flex: 0 1 200px; /* Ajusta a largura das colunas */
-  }
-}
-
-/* Para telas menores que 992px (como tablets em modo retrato) */
-@media (max-width: 992px) {
-  .col {
-    flex: 0 1 150px; /* Ajusta a largura das colunas */
-  }
-}
-
-/* Para telas menores que 768px (como smartphones em modo paisagem) */
-@media (max-width: 768px) {
-  .col {
-    flex: 0 1 100%; /* 1 coluna por linha */
-  }
+  margin-top: 2rem;
 }
 
 /* Container da empresa */
-
-/* Layout do contêiner de informações da empresa */
 .company-container {
-  margin-bottom: 40px; /* Espaço entre a seção e o mapa */
+  margin-bottom: 4rem;
   max-width: 100vw;
 }
 
-/* Estilo para o wrapper que contém as duas caixas */
 .company-info-wrapper {
   display: flex;
-  gap: 20px; /* Espaçamento entre as caixas */
+  flex-direction: column;
+  gap: 2rem;
 }
 
-/* Estilo para a caixa de informações da empresa */
 .company-info-box {
   border: 1px solid #ddd;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 30px 40px;
+  border-radius: 1rem;
+  box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.1);
+  padding: 3rem 4rem;
 }
 
-.company-info-box h2{
-  margin-bottom: 10px;
+.company-info-box h2 {
+  margin-bottom: 1rem;
 }
 
-/* Estilo para a caixa de contatos */
 .contatos-box {
   border: 1px solid #ddd;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 1rem;
+  box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.1);
   text-align: right;
-  padding: 40px; /* Aumenta o padding para adicionar um pouco mais de espaço */
-  flex: 1; /* Faz com que a caixa de contatos ocupe o espaço disponível */
+  padding: 4rem;
+  flex: 1;
   display: flex;
-  flex-direction: column; /* Organiza os itens em uma coluna */
-  justify-content: center; /* Alinha verticalmente no centro */
+  flex-direction: column;
+  justify-content: center;
 }
 
 .contatos-box .contato a {
-  color: inherit; /* Herda a cor do elemento pai, removendo a cor azul padrão */
-  text-decoration: none; /* Remove o sublinhado do link */
-  transition: color 0.3s; /* Adiciona uma transição suave para a cor ao passar o mouse */
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.3s;
 }
 
-/* Estilo para o link quando o mouse passa sobre ele */
-.contatos-box .contato a:hover h6{
-  color: #ced500; /* Muda a cor do link para verde quando o mouse passa sobre ele */
+.contatos-box .contato a:hover h6 {
+  color: #ced500;
 }
 
-/* Ajusta o layout das colunas em telas menores */
-@media (max-width: 992px) {
-  .company-info-wrapper {
-    flex-direction: column;
-  }
-}
-
-/* Layout do contêiner de informações e contatos */
 .company-info {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 2rem;
   align-items: flex-start;
 }
 
@@ -258,106 +351,81 @@ body {
 
 .company-info .contatos {
   flex: 1;
-  margin-top: 20px; /* Espaço acima dos contatos */
+  margin-top: 2rem;
 }
 
-/* Imagem da fachada */
 .img-faixada {
   width: 100%;
   height: auto;
-  max-width: 100%; /* Ajuste para se adaptar ao tamanho da coluna */
 }
 
-/* Estilo para a imagem da fachada para garantir que ela se ajuste ao layout */
 .faixada {
-  margin-bottom: 20px; /* Espaçamento inferior para separar a imagem do texto */
+  margin-bottom: 2rem;
 }
 
-/* Ajustes adicionais para o título */
-h2, .section-contact h3 {
-  margin: 0; /* Remove a margem padrão para melhor controle do espaçamento */
-}
-
-
-@media (max-width: 768px) {
-  .company-info {
-    flex-direction: column;
-  }
-
-  .company-info .faixada {
-    margin-bottom: 20px;
-  }
+h2,
+.section-contact h3 {
+  margin: 0;
 }
 
 .info-text p {
   text-align: justify;
 }
 
-/* Remove margens e preenchimentos específicos do mapa */
 .mapa-container {
   margin: 0;
   padding: 0;
 }
 
-/* Mapa */
-.mapa-container {
-  margin: 0; /* Remove margens extras ao redor do contêiner do mapa */
-  padding: 0; /* Remove preenchimento extra ao redor do contêiner do mapa */
-}
-
 .mapa {
-  width: 100%; /* Ajusta a largura para 100% do contêiner pai */
-  height: 30vh; /* Altura do mapa */
+  width: 100%;
+  height: 30vh;
   overflow: hidden;
 }
 
-/* Corrige o alinhamento do iframe dentro do mapa */
 .mapa iframe {
   width: 100%;
   height: 100%;
   border: 0;
-  display: block; /* Remove espaços extras ao redor do iframe */
+  display: block;
 }
 
-.contatos{
+.contatos {
   text-align: right;
 }
 
 .contatos h3 {
-  border-bottom: 2px solid #008000; /* Linha fina verde */
-  padding-bottom: 5px; /* Espaço entre o texto e a linha */
-  margin-bottom: 10px; /* Espaço entre a linha e o conteúdo abaixo */
-  display: inline-block; /* Ajusta a linha ao comprimento do texto */
+  border-bottom: 0.2rem solid #008000;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  display: inline-block;
 }
-
 
 .contatos p {
-    margin: 0; /* Remove a margem padrão */
-}
-  
-.contatos p + p {
-  margin-top: 5px; /* Ajuste o valor conforme necessário */
+  margin: 0;
 }
 
+.contatos p+p {
+  margin-top: 0.5rem;
+}
 
-/* Rodapé */
 #footer {
   background: #e1bd00;
-  padding: 30px 0;
+  padding: 1rem 0;
   color: #fff;
-  font-size: 14px;
+  font-size: 1.0rem;
   text-align: center;
 }
 
 #footer .footer-top {
   background: #145c50;
-  border-bottom: 1px solid #222;
-  padding: 30px 0;
+  border-bottom: 0.1rem solid #222;
+  padding: 1rem 0;
 }
 
 #footer .footer-info,
 #footer .footer-contact {
-  margin-bottom: 20px; /* Ajusta o espaçamento inferior das colunas */
+  margin-bottom: 2rem;
 }
 
 #footer .footer-info h3 {
@@ -366,28 +434,26 @@ h2, .section-contact h3 {
 }
 
 #footer .footer-contact h4 {
-  margin-bottom: 10px; /* Adiciona espaçamento entre o título e o texto */
+  margin-bottom: 1rem;
 }
-
 
 .footer-contact {
   display: flex;
-  flex-direction: column; /* Para alinhar o título e os ícones verticalmente */
-  align-items: center; /* Alinha horizontalmente no centro */
-  text-align: center; /* Centraliza o texto do título */
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .social-links {
   display: flex;
-  gap: 15px;
-  justify-content: center; /* Centraliza os ícones horizontalmente */
-  margin-top: 10px; /* Adiciona um espaço entre o título e os ícones */
+  gap: 1.5rem;
+  justify-content: center;
+  margin-top: 1rem;
 }
 
 .social-icon {
-  font-size: 24px;
+  font-size: 2.4rem;
   color: #e1bd00;
-  display: inline-block;
   transition: color 0.3s;
 }
 
@@ -395,57 +461,63 @@ h2, .section-contact h3 {
   color: #fff;
 }
 
-
 .copyright {
   text-align: center;
-  padding: 10px;
-}
-
-/* Adiciona um espaço uniforme entre as colunas do rodapé */
-@media (min-width: 768px) {
-  #footer .footer-top .col-lg-3 {
-    margin-bottom: 0; /* Remove a margem inferior para telas grandes */
-  }
 }
 
 .menu-container {
   display: flex;
   justify-content: flex-end;
-  padding: 10px;
+  padding: 1rem;
+}
+
+.menu-icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 1rem;
+  font-size: 2.4rem;
+  color: white;
+  cursor: pointer;
+  z-index: 3000;
 }
 
 .menu-icon i {
-  font-size: 24px; /* Ajuste o tamanho do ícone conforme necessário */
-  color: white;    /* Ajuste a cor do ícone conforme necessário */
-  margin-left: 1vw;
-  margin-right: 1vw;
+  font-size: 2.4rem;
+  color: white;
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 
-
 .bar {
-  width: 30px;
-  height: 3px;
+  width: 3rem;
+  height: 0.3rem;
   background-color: #333;
-  margin: 5px 0;
+  margin: 0.5rem 0;
   transition: 0.3s;
 }
 
 .menu {
+  z-index: 1000;
   display: none;
   position: absolute;
-  top: 60px;
+  top: 6rem;
   right: 0;
   background-color: #333;
   color: white;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.2);
 }
 
 .menu .user-name {
-  margin-bottom: 10px;
-  font-weight: bold;
+  margin-bottom: 1rem;
 }
+
+.dropdown-item {
+  padding: 0.5rem;
+}
+
 
 .dropdown-content {
   list-style: none;
@@ -453,20 +525,20 @@ h2, .section-contact h3 {
   margin: 0;
 }
 
-.dropdown-content .dropdown-item {
-  display: block;
+.dropdown-content li {
+  padding: 1rem 0;
+  border-bottom: 1px solid #444;
+}
+
+.dropdown-content li:last-child {
+  border-bottom: 0.5rem
+}
+
+.dropdown-content li a {
   color: white;
   text-decoration: none;
-  padding: 10px;
-  margin: 5px 0;
-  border-radius: 4px;
-  transition: background-color 0.3s;
 }
 
-.dropdown-content .dropdown-item:hover {
-  background-color: #555;
-}
-
-.menu.show {
-  display: block;
+.dropdown-content li a:hover {
+  text-decoration: underline;
 }

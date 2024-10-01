@@ -1,118 +1,63 @@
 <?php
 class Usuario {
     private $conn;
-    private $nome;
-    private $email;
-    private $senha;
-    private $papel;
-    private $cpf;
-    private $telefone;
-    private $cep;
-    private $logradouro;
-    private $complemento;
-    private $numero;
-    private $bairro;
-    private $cidade;
-    
+
     function __construct($conn) {
         $this->conn = $conn;
     }
 
-    // Getters e Setters
-    function get_nome() {
-        return $this->nome;
-    }
-    function set_nome($nome) {
-        $this->nome = $nome;
-    }
+    // Método para cadastrar um usuário ou administrador
+    public function cadastrar($nome, $email, $senha, $papel, $cpf = null, $telefone = null, $cep = null, $logradouro = null, $complemento = null, $numero = null, $bairro = null, $cidade = null) {
+        try {
+            $sql = "INSERT INTO usuario (nome, email, senha, papel, cpf, telefone, cep, logradouro, complemento, numero, bairro, cidade) 
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $stmt = $this->conn->prepare($sql);
 
-    function get_email() {
-        return $this->email;
-    }
-    function set_email($email) {
-        $this->email = $email;
-    }
+            if (!$stmt) {
+                throw new Exception("Erro na preparação da consulta: " . $this->conn->error);
+            }
 
-    function get_senha() {
-        return $this->senha;
-    }
-    function set_senha($senha) {
-        $this->senha = $senha;
-    }
+            // Hash da senha
+            $senhaHash = password_hash($senha, PASSWORD_BCRYPT);
 
-    function get_papel() {
-        return $this->papel;
-    }
-    function set_papel($papel) {
-        $this->papel = $papel;
-    }
+            // Verificar campos opcionais (administrador pode não fornecer esses campos)
+            $cpf = !empty($cpf) ? $cpf : null;
+            $telefone = !empty($telefone) ? $telefone : null;
+            $cep = !empty($cep) ? $cep : null;
+            $logradouro = !empty($logradouro) ? $logradouro : null;
+            $complemento = !empty($complemento) ? $complemento : null;
+            $numero = !empty($numero) ? $numero : null;
+            $bairro = !empty($bairro) ? $bairro : null;
+            $cidade = !empty($cidade) ? $cidade : null;
 
-    function get_cpf() {
-        return $this->cpf;
-    }
-    function set_cpf($cpf) {
-        $this->cpf = $cpf;
-    }
+            // Bind dos parâmetros (MySQLi usa bind_param com tipos de dados)
+            // Note que o 's' é usado para string e o 'i' para integer (se aplicável)
+            $stmt->bind_param(
+                'ssssiiississ',
+                $nome,
+                $email,
+                $senhaHash,
+                $papel,
+                $cpf,
+                $telefone,
+                $cep,
+                $logradouro,
+                $complemento,
+                $numero,
+                $bairro,
+                $cidade
+            );
 
-    function get_telefone() {
-        return $this->telefone;
-    }
-    function set_telefone($telefone) {
-        $this->telefone = $telefone;
-    }
+            if (!$stmt->execute()) {
+                throw new Exception("Erro ao executar consulta: " . $stmt->error);
+            }
 
-    function get_cep() {
-        return $this->cep;
-    }
-    function set_cep($cep) {
-        $this->cep = $cep;
-    }
-
-    function get_logradouro() {
-        return $this->logradouro;
-    }
-    function set_logradouro($logradouro) {
-        $this->logradouro = $logradouro;
-    }
-
-    function get_complemento() {
-        return $this->complemento;
-    }
-    function set_complemento($complemento) {
-        $this->complemento = $complemento;
-    }
-
-    function get_numero() {
-        return $this->numero;
-    }
-    function set_numero($numero) {
-        $this->numero = $numero;
-    }
-
-    function get_bairro() {
-        return $this->bairro;
-    }
-    function set_bairro($bairro) {
-        $this->bairro = $bairro;
-    }
-
-    function get_cidade() {
-        return $this->cidade;
-    }
-    function set_cidade($cidade) {
-        $this->cidade = $cidade;
-    }
-
-
-    // Método para cadastrar cliente
-    public function cadastrar($nome, $email, $senha, $papel, $cpf, $telefone, $cep, $logradouro, $complemento, $numero, $bairro, $cidade) {
-        // Prepare a query para evitar SQL Injection
-        $sql = "INSERT INTO usuario (nome, email, senha, papel, cpf, telefone, cep, logradouro, complemento, numero, bairro, cidade) 
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        $stmt = $this->conn->prepare($sql);
-        
-        // Execute a query e retorne verdadeiro se bem-sucedido
-        return $stmt->execute([$nome, $email, $senha, $papel, $cpf, $telefone, $cep, $logradouro, $complemento, $numero, $bairro, $cidade]);
+            return true;
+        } catch (Exception $e) {
+            // Registrar o erro e retornar a mensagem
+            error_log($e->getMessage());
+            return "Erro ao cadastrar usuário: " . $e->getMessage();
+        }
     }
 }
 ?>
