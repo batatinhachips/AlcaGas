@@ -37,7 +37,6 @@ $usuarios = $usuariosRepositorio->buscarTodosUsuarios();
 ?>
 
 <body class="usuario-admin">
-
   <nav class="navbar navbar-expand-sm navbar-custom navbar-dark fixed-top usuario-admin">
     <div class="container-fluid">
       <!-- NAVBAR -->
@@ -50,11 +49,11 @@ $usuarios = $usuariosRepositorio->buscarTodosUsuarios();
         <a class="btn btn-light ms-2" href="../visao/cadastrar_admin.php">Novo Admin</a>
         <a class="btn btn-light ms-2" href="../visao/cadastrar_produtos.php">Novo Produto</a>
       </div>
-    </div>
 
-    <!-- Ícone do Menu Hambúrguer -->
-    <div class="menu-icon" onclick="toggleMenu()">
-      <i class="bi bi-list"></i>
+      <!-- Ícone do Menu Hambúrguer -->
+      <div class="menu-icon" onclick="toggleMenu()">
+        <i class="bi bi-list"></i>
+      </div>
     </div>
 
     <!-- Menu Dropdown -->
@@ -75,9 +74,7 @@ $usuarios = $usuariosRepositorio->buscarTodosUsuarios();
         <?php } ?>
       </div>
     </nav>
-    </div>
   </nav>
-  </div>
 
   <!-- LINKS DE NAVEGACAO E BOTOES -->
   <div class="collapse navbar-collapse" id="navbarNav">
