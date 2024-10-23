@@ -36,7 +36,7 @@ $usuarios = $usuariosRepositorio->buscarTodosAdmins();
 
 ?>
 
-<body>
+<body class="usuario-admin">
 
   <nav class="navbar navbar-expand-sm navbar-custom navbar-dark fixed-top">
     <div class="container-fluid">
