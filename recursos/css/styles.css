@@ -21,7 +21,6 @@ body {
 }
 
 .container-fluid {
-  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -99,21 +98,15 @@ body {
   justify-content: center;
   align-items: center;
   margin: 0 auto;
-  border-radius: 2.0rem;
-  /* Ajuste em rem */
-  width: 12rem;
-  /* Ajuste em rem */
-  height: 4rem;
-  /* Ajuste em rem */
-  font-size: 1rem;
-  /* Ajuste em rem */
+  border-radius: 2.0rem; /* Ajuste em rem */
+  width: 12rem; /* Ajuste em rem */
+  height: 4rem; /* Ajuste em rem */
+  font-size: 1rem; /* Ajuste em rem */
 }
 
 .whatsapp-link {
-  text-decoration: none;
-  /* Remove o sublinhado */
-  color: inherit;
-  /* Herda a cor do botão, que deve ser branca ou outra cor desejada */
+  text-decoration: none; /* Remove o sublinhado */
+  color: inherit; /* Herda a cor do botão, que deve ser branca ou outra cor desejada */
 }
 
 .icon-spacing {
@@ -135,51 +128,38 @@ body {
 .rowCard {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  /* Espaçamento uniforme entre os cards */
+  justify-content: space-between; /* Espaçamento uniforme entre os cards */
 }
 
 /* Estilo para cada coluna (card) */
 .col {
-  flex: 1 1 calc(20% - 20px);
-  /* 20% da largura menos margem */
-  margin: 10px;
-  /* Margem entre os cards */
-  box-sizing: border-box;
-  /* Para incluir padding e border no cálculo da largura */
+  flex: 1 1 calc(20% - 20px); /* 20% da largura menos margem */
+  margin: 10px; /* Margem entre os cards */
+  box-sizing: border-box; /* Para incluir padding e border no cálculo da largura */
 }
 
 /* Estilo do card */
 .custom-card {
-  background-color: #fff;
-  /* Cor de fundo do card */
-  border: 1px solid #ddd;
-  /* Borda do card */
-  border-radius: 8px;
-  /* Bordas arredondadas */
-  overflow: hidden;
-  /* Para esconder o conteúdo que sai da borda */
-  transition: transform 0.2s;
-  /* Efeito de transição para hover */
+  background-color: #fff; /* Cor de fundo do card */
+  border: 1px solid #ddd; /* Borda do card */
+  border-radius: 8px; /* Bordas arredondadas */
+  overflow: hidden; /* Para esconder o conteúdo que sai da borda */
+  transition: transform 0.2s; /* Efeito de transição para hover */
 }
 
 .custom-card:hover {
-  transform: scale(1.05);
-  /* Efeito de aumento ao passar o mouse */
+  transform: scale(1.05); /* Efeito de aumento ao passar o mouse */
 }
 
 /* Estilo da imagem do produto */
 .custom-card img {
-  width: 100%;
-  /* A imagem ocupa toda a largura do card */
-  height: auto;
-  /* Altura automática para manter proporções */
+  width: 100%; /* A imagem ocupa toda a largura do card */
+  height: auto; /* Altura automática para manter proporções */
 }
 
 /* Estilo do corpo do card */
 .custom-card-body {
-  padding: 15px;
-  /* Padding interno do card */
+  padding: 15px; /* Padding interno do card */
 }
 
 /* Estilo do título do card */
@@ -193,18 +173,12 @@ body {
   color: #666;
   text-align: left;
 }
-
 .navbar-navButton {
-  display: flex;
-  /* Equivalente a d-flex */
-  align-items: center;
-  /* Alinha verticalmente ao centro */
-  justify-content: center;
-  /* Alinha horizontalmente ao centro */
-  margin-left: auto;
-  /* Equivalente a ms-auto */
+  display: flex; /* Equivalente a d-flex */
+  align-items: center; /* Alinha verticalmente ao centro */
+  justify-content: center; /* Alinha horizontalmente ao centro */
+  margin-left: auto; /* Equivalente a ms-auto */
 }
-
 .nav-item {
   /*! max-width: 50%; */
 
@@ -218,97 +192,82 @@ body {
 /* Responsividade */
 @media (max-width: 1200px) {
   .col {
-    flex: 1 1 100%;
-    /* 4 cards por linha em telas médias */
+    flex: 1 1 100%; /* 4 cards por linha em telas médias */
   }
-
   .navbar-navButton {
-    display: flex;
-    padding: 2px;
-  }
-
-  .nav-item {
-    white-space: nowrap;
-    display: flex;
-  }
-
-  .btn.btn-light.ms-2 {
-    max-width: 100%;
-    font-size: 6px;
-    /*! overflow: hidden; */
-  }
+  display: flex;
+  padding: 2px;
+}
+.nav-item {
+  white-space: nowrap;
+  display: flex;
+}
+.btn.btn-light.ms-2 {
+  max-width: 100%;
+  font-size: 6px;
+  /*! overflow: hidden; */
+}
 }
 
 @media (max-width: 992px) {
   .col {
-    flex: 1 1 100%;
-    /* 3 cards por linha em telas menores */
+    flex: 1 1 100%; /* 3 cards por linha em telas menores */
   }
-
   .navbar-navButton {
-    display: flex;
-    padding: 2px;
-  }
-
-  .nav-item {
-    white-space: nowrap;
-    display: flex;
-  }
-
-  .btn.btn-light.ms-2 {
-    max-width: 100%;
-    font-size: 6px;
-    /*! overflow: hidden; */
-  }
+  display: flex;
+  padding: 2px;
+}
+.nav-item {
+  white-space: nowrap;
+  display: flex;
+}
+.btn.btn-light.ms-2 {
+  max-width: 100%;
+  font-size: 6px;
+  /*! overflow: hidden; */
+}
 }
 
 @media (max-width: 768px) {
   .col {
-    flex: 1 1 100%;
-    /* 2 cards por linha em telas pequenas */
+    flex: 1 1 100%; /* 2 cards por linha em telas pequenas */
   }
-
   .navbar-navButton {
-    display: flex;
-    padding: 2px;
-  }
-
-  .nav-item {
-    white-space: nowrap;
-    display: flex;
-  }
-
-  .btn.btn-light.ms-2 {
-    max-width: 100%;
-    font-size: 6px;
-    /*! overflow: hidden; */
-  }
+  display: flex;
+  padding: 2px;
+}
+.nav-item {
+  white-space: nowrap;
+  display: flex;
+}
+.btn.btn-light.ms-2 {
+  max-width: 100%;
+  font-size: 6px;
+  /*! overflow: hidden; */
+}
 }
 
 @media (max-width: 576px) {
   .col {
-    flex: 1 1 100%;
-    /* 1 card por linha em telas muito pequenas */
+    flex: 1 1 100%; /* 1 card por linha em telas muito pequenas */
   }
-
+  
   .navbar-navButton {
-    display: flex;
-    padding: 2px;
-  }
-
-  .nav-item {
-    white-space: nowrap;
-    display: flex;
-  }
-
-  .btn.btn-light.ms-2 {
-    max-width: 100%;
-    font-size: 6px;
-    /*! overflow: hidden; */
-  }
+  display: flex;
+  padding: 2px;
+}
+.nav-item {
+  white-space: nowrap;
+  display: flex;
+}
+.btn.btn-light.ms-2 {
+  max-width: 100%;
+  font-size: 6px;
+  /*! overflow: hidden; */
+}
 }
 
-
+ 
 
 
 
@@ -510,7 +469,21 @@ h2,
   display: flex;
   justify-content: flex-end;
   padding: 1rem;
-  align-items: center;
+}
+
+.usuario-admin .menu-icon {
+  position: relative; /* Mantém no fluxo normal */
+  float: right; /* Move o ícone para a direita */
+  font-size: 2.4rem;
+  color: white;
+  cursor: pointer;
+  z-index: 3000;
+}
+
+.usuario-admin .botao-admin {
+  display: flex;
+  gap: 1rem; /* Espaço entre os botões */
+  margin-left: auto; /* Empurra os botões para a direita */
 }
 
 .menu-icon {
@@ -529,23 +502,6 @@ h2,
   color: white;
   margin-left: 1rem;
   margin-right: 1rem;
-}
-
-.usuario-admin .menu-icon {
-  position: relative;
-  margin-left: auto;
-  font-size: 2.4rem;
-  color: white;
-  cursor: pointer;
-  z-index: 3000;
-}
-
-.usuario-admin .botao-admin {
-  display: flex;
-  gap: 1rem;
-  /* Espaço entre os botões */
-  margin-left: auto;
-  /* Empurra os botões para a direita */
 }
 
 .bar {
