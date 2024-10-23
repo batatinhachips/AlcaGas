@@ -20,12 +20,6 @@ body {
   flex-wrap: nowrap;
 }
 
-.botao-admin {
-  display: flex;
-  gap: 1rem; /* Espaço entre os botões */
-  margin-left: auto; /* Empurra os botões para a direita */
-}
-
 .container-fluid {
   display: flex;
   justify-content: space-between;
@@ -235,61 +229,42 @@ body {
 }
 
 @media (max-width: 768px) {
-  .navbar-custom {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  .col {
+    flex: 1 1 100%; /* 2 cards por linha em telas pequenas */
   }
-
-  .botao-admin {
-    display: flex;
-    gap: 0.5rem;
-    margin-left: 0;
-    order: 1; /* Certifica que os botões venham antes do ícone */
-  }
-
-  .menu-icon {
-    position: relative;
-    top: 0;
-    right: 0;
-    font-size: 2rem;
-    order: 2; /* Certifica que o ícone venha depois dos botões */
-  }
-
-  .btn.btn-light.ms-2 {
-    max-width: 100%;
-    font-size: 10px; /* Ajusta o tamanho da fonte para algo mais visível */
-  }
+  .navbar-navButton {
+  display: flex;
+  padding: 2px;
+}
+.nav-item {
+  white-space: nowrap;
+  display: flex;
+}
+.btn.btn-light.ms-2 {
+  max-width: 100%;
+  font-size: 6px;
+  /*! overflow: hidden; */
+}
 }
 
 @media (max-width: 576px) {
-  .navbar-custom {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap; /* Permite que os itens se ajustem melhor em espaços menores */
+  .col {
+    flex: 1 1 100%; /* 1 card por linha em telas muito pequenas */
   }
-
-  .botao-admin {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap; /* Permite que os botões quebrem a linha se necessário */
-    justify-content: flex-end;
-    width: 100%;
-    margin-top: 0.5rem; /* Dá um pouco de espaço abaixo do ícone */
-    order: 1;
-  }
-
-  .menu-icon {
-    font-size: 1.8rem;
-    order: 2;
-    margin-left: auto; /* Certifica que o ícone fique à direita */
-  }
-
-  .btn.btn-light.ms-2 {
-    max-width: 100%;
-    font-size: 10px;
-  }
+  
+  .navbar-navButton {
+  display: flex;
+  padding: 2px;
+}
+.nav-item {
+  white-space: nowrap;
+  display: flex;
+}
+.btn.btn-light.ms-2 {
+  max-width: 100%;
+  font-size: 6px;
+  /*! overflow: hidden; */
+}
 }
 
  
@@ -497,6 +472,24 @@ h2,
 }
 
 .menu-icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 1rem;
+  font-size: 2.4rem;
+  color: white;
+  cursor: pointer;
+  z-index: 3000;
+}
+
+.menu-icon i {
+  font-size: 2.4rem;
+  color: white;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.menu-icontable {
   position: relative; /* Mantém no fluxo normal */
   float: right; /* Move o ícone para a direita */
   font-size: 2.4rem;
@@ -505,12 +498,10 @@ h2,
   z-index: 3000;
 }
 
-
-.menu-icon i {
-  font-size: 2.4rem;
-  color: white;
-  margin-left: 1rem;
-  margin-right: 1rem;
+.botao-admin {
+  display: flex;
+  gap: 1rem; /* Espaço entre os botões */
+  margin-left: auto; /* Empurra os botões para a direita */
 }
 
 .bar {
