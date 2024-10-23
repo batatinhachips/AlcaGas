@@ -492,8 +492,8 @@ h2,
 .usuario-admin .menu-icon {
   position: relative; /* Mantém no fluxo normal */
   float: right; /* Move o ícone para a direita */
-  font-size: 2.4rem;
-  color: white;
+  font-size: 2.4rem !important;
+  color: white !important;
   cursor: pointer;
   z-index: 3000;
 }
