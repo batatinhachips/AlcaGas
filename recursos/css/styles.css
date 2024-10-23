@@ -469,6 +469,7 @@ h2,
   display: flex;
   justify-content: flex-end;
   padding: 1rem;
+  align-items:center;
 }
 
 .menu-icon {
@@ -491,13 +492,10 @@ h2,
 
 .usuario-admin .menu-icon {
   position: relative; /* Mantém no fluxo normal */
-  float: right; /* Move o ícone para a direita */
   font-size: 2.4rem;
   color: white;
   cursor: pointer;
   z-index: 3000;
-  margin-top: 2.5rem;
-  margin-left: 1rem;
 }
 
 .usuario-admin .botao-admin {
