@@ -20,6 +20,12 @@ body {
   flex-wrap: nowrap;
 }
 
+.botao-admin {
+  display: flex;
+  gap: 1rem; /* Espaço entre os botões */
+  margin-left: auto; /* Empurra os botões para a direita */
+}
+
 .container-fluid {
   display: flex;
   justify-content: space-between;
@@ -472,15 +478,14 @@ h2,
 }
 
 .menu-icon {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  right: 1rem;
+  position: relative; /* Mantém no fluxo normal */
+  float: right; /* Move o ícone para a direita */
   font-size: 2.4rem;
   color: white;
   cursor: pointer;
   z-index: 3000;
 }
+
 
 .menu-icon i {
   font-size: 2.4rem;
