@@ -38,7 +38,7 @@ $usuarios = $usuariosRepositorio->buscarTodosUsuarios();
 
 <body class="usuario-admin">
 
-  <nav class="navbar navbar-expand-sm navbar-custom navbar-dark fixed-top">
+  <nav class="navbar navbar-expand-sm navbar-custom navbar-dark fixed-top usuario-admin">
     <div class="container-fluid">
       <!-- NAVBAR -->
       <a class="navbar-brand" href="/">
@@ -53,7 +53,7 @@ $usuarios = $usuariosRepositorio->buscarTodosUsuarios();
     </div>
 
     <!-- Ícone do Menu Hambúrguer -->
-    <div class="menu-icontable" onclick="toggleMenu()">
+    <div class="menu-icon" onclick="toggleMenu()">
       <i class="bi bi-list"></i>
     </div>
 
