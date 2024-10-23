@@ -471,7 +471,7 @@ h2,
   padding: 1rem;
 }
 
-.menu-icontable {
+.usuario-admin .menu-icon {
   position: relative; /* Mantém no fluxo normal */
   float: right; /* Move o ícone para a direita */
   font-size: 2.4rem;
@@ -480,7 +480,7 @@ h2,
   z-index: 3000;
 }
 
-.botao-admin {
+.usuario-admin .botao-admin {
   display: flex;
   gap: 1rem; /* Espaço entre os botões */
   margin-left: auto; /* Empurra os botões para a direita */
