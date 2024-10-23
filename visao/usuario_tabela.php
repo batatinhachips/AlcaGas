@@ -51,7 +51,7 @@ $usuarios = $usuariosRepositorio->buscarTodosUsuarios();
       </div>
 
       <!-- Ícone do Menu Hambúrguer -->
-      <div class="menu-icon" onclick="toggleMenu()">
+      <div class="usuario-admin" onclick="toggleMenu()">
         <i class="bi bi-list"></i>
       </div>
     </div>
