@@ -489,10 +489,12 @@ h2,
 }
 
 .usuario-admin .menu-icon {
-  font-size: 2.4rem;
-  color: white;
-  cursor: pointer;
-  z-index: 3000;
+  position: relative; /* Mude para relativo */
+  margin-left: auto; /* Empurra o ícone para a direita */
+  font-size: 2.4rem; /* Tamanho do ícone */
+  color: white; /* Cor do ícone */
+  cursor: pointer; /* Cursor de ponteiro */
+  z-index: 3000; /* Garante que fique acima de outros elementos */
 }
 
 .usuario-admin .botao-admin {
