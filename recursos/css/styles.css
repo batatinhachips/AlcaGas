@@ -496,6 +496,7 @@ h2,
   color: white;
   cursor: pointer;
   z-index: 3000;
+  margin-top: 1.2rem;
 }
 
 .usuario-admin .botao-admin {
