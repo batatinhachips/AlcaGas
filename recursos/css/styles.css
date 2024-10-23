@@ -468,17 +468,17 @@ h2,
 .menu-container {
   display: flex;
   justify-content: flex-end;
+  align-items: center; /* Adicionado para centralizar verticalmente */
   padding: 1rem;
 }
 
 .usuario-admin .menu-icon {
-  position: relative; /* Mantém no fluxo normal */
-  float: right; /* Move o ícone para a direita */
   font-size: 2.4rem;
   color: white;
   cursor: pointer;
   z-index: 3000;
 }
+
 
 .usuario-admin .botao-admin {
   display: flex;
@@ -487,7 +487,6 @@ h2,
 }
 
 .menu-icon {
-  position: absolute;
   top: 50%;
   transform: translateY(-50%);
   right: 1rem;
