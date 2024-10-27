@@ -4,12 +4,20 @@ include '../modelo/produtos.php';
 include '../repositorio/produtos_repositorio.php';
 include '../modelo/usuario.php';
 include '../repositorio/usuarios_repositorio.php';
+include '../repositorio/vendas_repositorio.php';
 
 $produtosRepositorio = new produtoRepositorio($conn);
 $usuariosRepositorio = new usuarioRepositorio($conn);
+$vendasRepositorio = new estoqueRepositorio($conn);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
     $idParaExcluir = $_POST['id'];
+
+    if (isset($_POST['tipo']) && $_POST['tipo'] === 'vendas') {
+    $vendasRepositorio->excluirVendasPorId($idParaExcluir);
+    header('Location: ../visao/estoque.php');
+    exit();
+    }
 
     if (isset($_POST['tipo']) && $_POST['tipo'] === 'produto') {
         // Excluir produto
