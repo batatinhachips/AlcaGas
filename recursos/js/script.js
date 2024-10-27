@@ -19,3 +19,96 @@ $(document).ready(function() {
       $('#login-form').show();
     });
   });
+
+    $(document).ready(function() {
+        $('#formVenda').on('submit', function(event) {
+            event.preventDefault();
+            const produto = $('#produto').val();
+            const quantidade = parseInt($('#quantidade').val());
+            const preco = parseFloat($('#preco').val());
+            const formaPagamento = $('#formaPagamento').val();
+            const endereco = $('#endereco').val();
+            const total = (quantidade * preco).toFixed(2);
+
+            $.ajax({
+                url: 'add_venda.php',
+                type: 'POST',
+                data: {
+                    produto,
+                    quantidade,
+                    preco,
+                    total,
+                    formaPagamento,
+                    endereco
+                },
+                success: function(response) {
+                    Swal.fire('Sucesso!', 'Venda adicionada com sucesso!', 'success');
+                    adicionarVendaNaTabela(response);
+                    $('#formVenda')[0].reset();
+                },
+                error: function() {
+                    Swal.fire('Erro!', 'Não foi possível adicionar a venda.', 'error');
+                }
+            });
+        });
+
+        function adicionarVendaNaTabela(venda) {
+            const row = `<tr>
+                <td>${venda.id_venda}</td>
+                <td>${venda.produto}</td>
+                <td>${venda.quantidade}</td>
+                <td>R$ ${parseFloat(venda.preco).toFixed(2)}</td>
+                <td>R$ ${venda.total}</td>
+                <td>${venda.forma_pagamento}</td>
+                <td>${venda.endereco}</td>
+            </tr>`;
+            $('#tabelaVendas tbody').append(row);
+        }
+    });
+
+
+    $(document).ready(function() {
+      $('#formVenda').on('submit', function(event) {
+          event.preventDefault();
+          const produto = $('#produto').val();
+          const quantidade = parseInt($('#quantidade').val());
+          const preco = parseFloat($('#preco').val());
+          const formaPagamento = $('#formaPagamento').val();
+          const endereco = $('#endereco').val();
+          const total = (quantidade * preco).toFixed(2);
+
+          $.ajax({
+              url: 'add_venda.php',
+              type: 'POST',
+              data: {
+                  produto,
+                  quantidade,
+                  preco,
+                  total,
+                  formaPagamento,
+                  endereco
+              },
+              success: function(response) {
+                  Swal.fire('Sucesso!', 'Venda adicionada com sucesso!', 'success');
+                  adicionarVendaNaTabela(response);
+                  $('#formVenda')[0].reset();
+              },
+              error: function() {
+                  Swal.fire('Erro!', 'Não foi possível adicionar a venda.', 'error');
+              }
+          });
+      });
+
+      function adicionarVendaNaTabela(venda) {
+          const row = `<tr>
+              <td>${venda.id_venda}</td>
+              <td>${venda.produto}</td>
+              <td>${venda.quantidade}</td>
+              <td>R$ ${parseFloat(venda.preco).toFixed(2)}</td>
+              <td>R$ ${venda.total}</td>
+              <td>${venda.forma_pagamento}</td>
+              <td>${venda.endereco}</td>
+          </tr>`;
+          $('#tabelaVendas tbody').append(row);
+      }
+  });
