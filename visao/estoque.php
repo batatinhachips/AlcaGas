@@ -7,6 +7,7 @@
     <title>Controle de Vendas - Site de Gás</title>
     <script src="../recursos/js/jquery-3.5.1.min.js"></script>
     <script src="../recursos/js/script.js"></script>
+    <link rel="stylesheet" href="recursos/css/styles.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
