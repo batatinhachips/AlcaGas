@@ -22,33 +22,6 @@ $vendas = $vendasRepositorio->buscarTodasVendas();
 <body>
 <div class="container mt-5">
 
-
-    <h2>Controle de Vendas</h2>
-
-
-    <form action="../controladora/processar_vendas.php" method="POST" enctype="multipart/form-data">
-
-    <label for="endereco" class="titulo-campo">Endereço:</label>
-    <input type="text" id="endereco" name="endereco"  class="custom-input" required>
-
-    <label for="produto" class="titulo-campo">Produto:</label>
-    <input type="text" id="produto" name="produto" class="custom-input" required>
-
-    <label for="quantidade" class="titulo-campo">Quantidade:</label>
-    <input type="number" id="quantidade" name="quantidade" class="custom-input" required>
-
-    <label for="preco" class="titulo-campo">Preço do Produto:</label>
-    <input type="number" step="0.01" id="preco" name="preco" class="custom-input" required>
-
-    <label for="formaPagamento" class="titulo-campo">Forma de Pagamento:</label>
-    <input type="text" id="formaPagamento" name="formaPagamento"  class="custom-input" required>
-
-
-    <input type="submit" name="cadastro" class="btn btn-primary" value="CADASTRAR">
-</form>
-
-
-
     <table class="table mt-4" id="tabelaVendas">
         <thead>
             <tr>
@@ -57,7 +30,8 @@ $vendas = $vendasRepositorio->buscarTodasVendas();
                 <th>Preço</th>
                 <th>Total</th>
                 <th>Forma de Pagamento</th>
-                <th>Endereço</th>
+                <th>Cep</th>
+                <th>Numero</th>
                 <th>Ações</th>
             </tr>
 
@@ -80,7 +54,8 @@ $vendas = $vendasRepositorio->buscarTodasVendas();
                 <td><input type="text" name="preco" value="<?= $venda["preco"] ?>" class="custom-input"></td>
                 <td><input type="text" name="total" value="<?= $venda["total"] ?>" class="custom-input"></td> 
                 <td><input type="text" name="formaPagamento" value="<?= $venda["formaPagamento"] ?>" class="custom-input"></td>
-                <td><input type="text" name="endereco" value="<?= $venda["endereco"] ?>" class="custom-input"></td>
+                <td><input type="text" name="cep" value="<?= $venda["cep"] ?>" class="custom-input"></td>
+                <td><input type="text" name="numero" value="<?= $venda["numero"] ?>" class="custom-input"></td>
                 <td>
                     <button type="submit" class="btn btn-primary btn-lg btn-block botao-salvar-edicoes">Salvar edições</button>
                     

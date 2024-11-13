@@ -65,16 +65,19 @@ $produtos = $produtosRepositorio->buscarTodos();
       <div id="navbarNav" class="navbar-nav">
         <ul class="navbar-navButton">
           <li class="nav-item">
-            <a class="btn btn-light ms-2" href="../visao/cadastrar_admin.php">Novo Admin</a>
+            <a class="btn btn-light ms-2" href="cadastrar_admin.php">Novo Admin</a>
           </li>
           <li class="nav-item">
-            <a class="btn btn-light ms-2" href="../visao/cadastrar_produtos.php">Novo Produto</a>
+            <a class="btn btn-light ms-2" href="cadastrar_produtos.php">Novo Produto</a>
           </li>
           <li class="nav-item">
             <a class="btn btn-light ms-2" href="admin_tabela.php">Tabela Admins</a>
           </li>
           <li class="nav-item">
             <a class="btn btn-light ms-2" href="usuario_tabela.php">Tabela Clientes</a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-light ms-2" href="estoque.php">Tabela de Vendas</a>
           </li>
         </ul>
       </div>

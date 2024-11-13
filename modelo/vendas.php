@@ -1,53 +1,123 @@
 <?php
 class Estoque {
     private $id;
-    private $endereco;
+    private $cep;
+    private $rua;
+    private $numero;
+    private $bairro;
+    private $cidade;
     private $produto;
     private $quantidade;
     private $preco;
     private $total;
     private $formaPagamento;
     private $total_produtos;
-    private $total_lucro;
-
 
     public function __construct(
         $id,
-        $endereco,
+        $cep, 
+        $rua, 
+        $numero, 
+        $bairro, 
+        $cidade,
         $produto,
         $quantidade,
         $preco,
         $total,
         $formaPagamento,
         $total_produtos,
-        $total_lucro
     ) 
     {
         $this->id = $id;
-        $this->endereco = $endereco;
+        $this->cep = $cep;
+        $this->rua = $rua;
+        $this->numero = $numero;
+        $this->bairro = $bairro;
+        $this->cidade = $cidade;
         $this->produto = $produto;
         $this->quantidade = $quantidade;
         $this->preco = $preco;
         $this->total = $total;
         $this->formaPagamento = $formaPagamento;
         $this->total_produtos = $total_produtos;
-        $this->total_lucro = $total_lucro;
+        
+        // Preenche o endereço com base no CEP, caso o CEP esteja presente
+        if ($this->cep) {
+            $this->preencherEndereco();
+        }
     }
 
-    // Métodos get e set para cada propriedade
+    // Método para preencher o endereço a partir do CEP
+    private function preencherEndereco() {
+        $cep = preg_replace('/[^0-9]/', '', $this->cep); // Remove caracteres não numéricos do CEP
+        if (strlen($cep) == 8) { // Verifica se o CEP tem 8 caracteres
+            $url = "https://viacep.com.br/ws/{$cep}/json/";
+            $json = file_get_contents($url);
+            $data = json_decode($json, true);
+
+            if (isset($data['logradouro'])) {
+                $this->rua = $data['logradouro'];
+                $this->bairro = $data['bairro'];
+                $this->cidade = $data['localidade'];
+            } else {
+                $this->rua = '';
+                $this->bairro = '';
+                $this->cidade = '';
+            }
+        } else {
+            // Caso o CEP seja inválido, limpa os campos
+            $this->rua = '';
+            $this->bairro = '';
+            $this->cidade = '';
+        }
+    }
+
     public function getId() {
         return $this->id;
-        }
-        public function setId($id) {
-            $this->id = $id;
-        }
-
-    public function getEndereco() {
-        return $this->endereco;
+    }
+    public function setId($id) {
+        $this->id = $id;
     }
 
-    public function setEndereco($endereco) {
-        $this->endereco = $endereco;
+    public function getCep() {
+        return $this->cep;
+    }
+
+    public function setCep($cep) {
+        $this->cep = $cep;
+        $this->preencherEndereco(); // Repreenche o endereço sempre que o CEP for alterado
+    }
+
+    public function getRua() {
+        return $this->rua;
+    }
+
+    public function setRua($rua) {
+        $this->rua = $rua;
+    }
+
+    public function getNumero() {
+        return $this->numero;
+    }
+
+    public function setNumero($numero) {
+        $this->numero = $numero;
+    }
+
+    public function getBairro() {
+        return $this->bairro;
+    }
+
+    public function setBairro($bairro) {
+        $this->bairro = $bairro;
+    }
+
+    public function getCidade() {
+        return $this->cidade;
+    }
+
+    public function setCidade($cidade) {
+        $this->cidade = $cidade;
     }
 
     public function getProduto() {
@@ -97,15 +167,5 @@ class Estoque {
     public function setTotalProdutos($total_produtos) {
         $this->total_produtos = $total_produtos;
     }
-
-    public function getTotalLucro() {
-        return $this->total_lucro;
-    }
-
-    public function setTotalLucro($total_lucro) {
-        $this->total_lucro = $total_lucro;
-    }
-
 }
-
 ?>
