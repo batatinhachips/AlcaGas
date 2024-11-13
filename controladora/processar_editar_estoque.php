@@ -16,12 +16,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $preco = (float) ($_POST["preco"] ?? 0);
     $total = (float) ($_POST["total"] ?? 0);
     $formaPagamento = $_POST["formaPagamento"] ?? null;
-    $endereco = $_POST["endereco"] ?? null;
+    $cep = $_POST['cep'];
+    $numero = $_POST['numero'];
     $id = $_POST["id"] ?? null; // Certifique-se de que você tem um ID para atualizar
 
 // Atualizar as informações do produto no banco de dados
-$stmt = $conn->prepare("UPDATE vendas SET produto=?, quantidade=?, preco=?, total=?, formaPagamento=?, endereco=? WHERE id=?");
-$stmt->bind_param("sidsssi", $produto, $quantidade, $preco, $total, $formaPagamento, $endereco, $id);
+$stmt = $conn->prepare("UPDATE vendas SET produto=?, quantidade=?, preco=?, total=?, formaPagamento=?, cep=?, numero=? WHERE id=?");
+$stmt->bind_param("sidssssi", $produto, $quantidade, $preco, $total, $formaPagamento, $cep, $numero, $id);
 
 if ($stmt->execute()) {
     header("Location: ../visao/estoque.php");
