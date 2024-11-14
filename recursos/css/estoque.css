@@ -26,11 +26,14 @@ body {
 .container {
     max-width: 50rem;
     margin-top: 3rem;
-    margin-bottom: 3rem;
     padding: 2rem;
     background-color: #fff;
     border-radius: 0.5rem;
     box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.1);
+}
+
+.container form:last-of-type {
+    margin-bottom: 3rem;
 }
 
 /* Estilo para títulos */
