@@ -9,8 +9,7 @@
     <script src="../recursos/js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
-    <link rel="stylesheet" href="../css/estoque.css">
+    <link rel="stylesheet" href="../recursos/css/estoque.css">
 </head>
 <?php
 include '../controladora/conexao.php';
