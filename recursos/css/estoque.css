@@ -11,7 +11,6 @@ html, body {
 body {
     background-image: url('../imagens/bg2.png');
     background-size: cover;
-    background-color: #d0a700;
     background-position: center;
     color: #333;
     display: flex;
@@ -30,10 +29,6 @@ body {
     background-color: #fff;
     border-radius: 0.5rem;
     box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.1);
-}
-
-.container form:last-of-type {
-    margin-bottom: 3rem;
 }
 
 /* Estilo para títulos */
