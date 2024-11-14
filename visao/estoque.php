@@ -128,6 +128,8 @@ $totalVendas = $vendasRepositorio->somarTotais();
     </table>
     <?php echo "Lucro de: R$ " . number_format($totalVendas, 2, ',', '.'); ?>
 </div>
+<br>
+<br>
 
 </body>
 </html>
