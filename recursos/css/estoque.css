@@ -98,12 +98,20 @@ h2 {
     width: 100%;
     margin-top: 2rem;
     border-collapse: collapse;
+    table-layout: fixed; /* Adicionando para evitar quebra de layout */
+}
+
+/* Responsividade para a tabela */
+.table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .table th, .table td {
     padding: 0.75rem;
     text-align: left;
     border-bottom: 1px solid #ddd;
+    word-wrap: break-word; /* Quebra a palavra se necessário */
 }
 
 .table th {
@@ -117,6 +125,9 @@ h2 {
     .container {
         max-width: 90%;
         padding: 1.5rem;
+    }
+    .table th, .table td {
+        font-size: 0.875rem; /* Reduz o tamanho da fonte em telas menores */
     }
 }
 
