@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../recursos/css/bootstrap.min.css" rel="stylesheet">
     <title>Controle de Vendas - Site de Gás</title>
+    <link rel="stylesheet" href="recursos/css/estoque.css">
     <script src="../recursos/js/jquery-3.5.1.min.js"></script>
     <script src="../recursos/js/script.js"></script>
     <link rel="stylesheet" href="recursos/css/estoque.css">
