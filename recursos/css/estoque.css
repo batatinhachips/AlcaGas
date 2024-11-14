@@ -11,6 +11,7 @@ html, body {
 body {
     background-image: url('../imagens/bg.jpg');
     background-size: cover;
+    background-color: #d0a700;
     background-position: center;
     color: #333;
     display: flex;
