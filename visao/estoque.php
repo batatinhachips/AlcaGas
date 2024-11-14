@@ -37,7 +37,7 @@ $totalVendas = $vendasRepositorio->somarTotais();
 <div class="container mt-5">
     <h2>CONTROLE DE VENDAS</h2>
 
-    <form action="../controladora/processar_vendas.php" method="POST" enctype="multipart/form-data">
+    <form action="../controladora/processar_vendas.php" method="POST" enctype="multipart/form-data" style="margin-bottom: 3rem;">
         <label for="cep" class="titulo-campo">CEP:</label>
         <input type="text" id="cep" name="cep" class="custom-input" required maxlength="9" placeholder="00000-000">
 
