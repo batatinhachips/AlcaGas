@@ -1,0 +1,130 @@
+/* Reseta o padding e o margin para html e body */
+html, body {
+    height: 100%;
+    margin: 0; 
+    padding: 0;
+    font-size: 16px; /* Base para rem */
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+}
+
+/* Estilo para a página de estoque */
+body.estoque-page {
+    background-color: #f5f5f5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+    padding-top: 2rem;
+}
+
+/* Container principal para a tabela de estoque */
+.container-estoque {
+    max-width: 60rem; /* Aproximadamente 960px */
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.1);
+    overflow-x: auto;
+}
+
+/* Estilo para o título da página */
+.estoque-title {
+    color: #1D826E;
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+/* Estilo para a tabela de produtos */
+.table-estoque {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.table-estoque th, .table-estoque td {
+    padding: 0.875rem;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.table-estoque th {
+    background-color: #333;
+    color: #fff;
+}
+
+.table-estoque tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Estilo para botões de ação */
+.btn {
+    padding: 0.625rem 1.25rem;
+    border-radius: 0.3125rem;
+    border: none;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-primary {
+    background-color: #1D826E;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: #14815a;
+}
+
+.btn-secondary {
+    background-color: #333333;
+    color: #fff;
+}
+
+.btn-secondary:hover {
+    background-color: #555;
+}
+
+/* Alinha os botões ao centro */
+.alinha_botao {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+/* Estilo para placeholders nos campos de entrada */
+input::placeholder {
+    color: #aaa;
+}
+
+/* Responsividade */
+@media (max-width: 48rem) { /* Aproximadamente 768px */
+    .container-estoque {
+        max-width: 95%;
+        padding: 1.5rem;
+    }
+
+    .estoque-title {
+        font-size: 1.75rem;
+    }
+}
+
+@media (max-width: 30rem) { /* Aproximadamente 480px */
+    .container-estoque {
+        padding: 1rem;
+    }
+
+    .estoque-title {
+        font-size: 1.5rem;
+    }
+
+    .btn {
+        width: 100%;
+        text-align: center;
+    }
+}
