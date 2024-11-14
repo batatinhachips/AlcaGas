@@ -20,19 +20,16 @@ include "../controladora/autenticacao.php";
 $vendasRepositorio = new estoqueRepositorio($conn);
 $vendas = $vendasRepositorio->buscarTodasVendas();
 $totalVendas = $vendasRepositorio->somarTotais();
-
-
 ?>
 
 <body>
 <div class="container mt-5">
-<form action="../controladora/processar_vendas.php" method="POST" enctype="multipart/form-data">
+    <form action="../controladora/processar_vendas.php" method="POST" enctype="multipart/form-data">
         <label for="total_produtos" class="titulo-campo">Estoque:</label>
         <input type="text" id="total_produtos" name="total_produtos" class="custom-input">
         <input type="submit" name="cadastro" class="btn btn-dark" value="enviar">
     </form>
 </div>
-
 
 <div class="container mt-5">
     <h2>Controle de Vendas</h2>
@@ -64,7 +61,7 @@ $totalVendas = $vendasRepositorio->somarTotais();
 
         <label for="preco" class="titulo-campo">Preço do Produto:</label>
         <select id="preco" name="preco" class="custom-input" required>
-        <option value="10.00">Agua - R$ 9,99</option>
+            <option value="10.00">Agua - R$ 9,99</option>
             <option value="85.00">Gás Nacional 13kg - R$ 84,99</option>
             <option value="95.00">Gás Liquigas 13kg - R$ 94,99</option>
             <option value="220.00">Gás 20kg - R$ 219,99</option>
@@ -112,14 +109,14 @@ $totalVendas = $vendasRepositorio->somarTotais();
                 </td>
 
                 <td>
-                    <form action="../controladora/processar_exclusao.php" method="POST" style="margin-top: 10px;">
+                    <form action="../controladora/processar_exclusao.php" method="POST" class="acao-excluir">
                         <input type="hidden" name="id" value="<?= $venda->getId(); ?>">
                         <input type="hidden" name="tipo" value="vendas">
-                        <input type="submit" class="botao-excluir" value="Excluir" style="background-color: red; color: white; border: none; border-radius: 15px; padding: 6px 8px; font-weight: 500; font-family: Poppins, sans-serif; transition: background-color 0.3s;">
+                        <input type="submit" class="botao-excluir" value="Excluir">
                     </form>
-                    <form action="../visao/editar_estoque.php" method="POST" style="margin-bottom: 10px;">
+                    <form action="../visao/editar_estoque.php" method="POST" class="acao-editar">
                         <input type="hidden" name="id" value="<?= $venda->getId(); ?>">
-                        <input type="submit" class="botao-editar" value="Editar" style="background-color: green; color: white; border: none; border-radius: 15px; padding: 6px 11px; font-weight: 500; font-family: Poppins, sans-serif;">
+                        <input type="submit" class="botao-editar" value="Editar">
                     </form>
                 </td>
             </tr> 
