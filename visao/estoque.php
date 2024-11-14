@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../recursos/css/bootstrap.min.css" rel="stylesheet">
-    <title>Controle de Vendas - Site de Gás</title>
+    <title>Controle de Vendas - Alcântara Gás</title>
     <script src="../recursos/js/jquery-3.5.1.min.js"></script>
     <script src="../recursos/js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
@@ -35,7 +35,7 @@ $totalVendas = $vendasRepositorio->somarTotais();
 
 
 <div class="container mt-5">
-    <h2>Controle de Vendas</h2>
+    <h2>CONTROLE DE VENDAS</h2>
 
     <form action="../controladora/processar_vendas.php" method="POST" enctype="multipart/form-data">
         <label for="cep" class="titulo-campo">CEP:</label>
