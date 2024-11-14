@@ -25,7 +25,7 @@ $totalVendas = $vendasRepositorio->somarTotais();
 ?>
 
 <body>
-<div class="container mt-5">
+<div class="container mt-5 estoque">
 <form action="../controladora/processar_vendas.php" method="POST" enctype="multipart/form-data">
         <label for="total_produtos" class="titulo-campo">Estoque:</label>
         <input type="text" id="total_produtos" name="total_produtos" class="custom-input">
@@ -34,7 +34,7 @@ $totalVendas = $vendasRepositorio->somarTotais();
 </div>
 
 
-<div class="container mt-5">
+<div class="container mt-5 vendas">
     <h2>CONTROLE DE VENDAS</h2>
 
     <form action="../controladora/processar_vendas.php" method="POST" enctype="multipart/form-data" style="margin-bottom: 3rem;">
