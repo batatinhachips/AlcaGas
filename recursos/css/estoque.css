@@ -118,6 +118,9 @@ h2 {
         max-width: 90%;
         padding: 1.5rem;
     }
+    .table th, .table td {
+        font-size: 0.875rem; /* Reduz o tamanho da fonte em telas menores */
+    }
 }
 
 @media (max-width: 480px) {
