@@ -9,7 +9,7 @@ html, body {
 
 /* Background e centralização para a página de vendas */
 body {
-    background-image: url('../imagens/bg.jpg');
+    background-image: url('../imagens/bg2.png');
     background-size: cover;
     background-color: #d0a700;
     background-position: center;
@@ -26,6 +26,7 @@ body {
 .container {
     max-width: 50rem;
     margin-top: 3rem;
+    margin-bottom: 3rem;
     padding: 2rem;
     background-color: #fff;
     border-radius: 0.5rem;
