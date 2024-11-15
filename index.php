@@ -12,7 +12,6 @@
   <link href="recursos/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="recursos/css/styles.css">
-  <link rel="stylesheet" href="https://cdn.positus.global/production/resources/robbu/whatsapp-button/whatsapp-button.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <script src="recursos/js/bootstrap.bundle.min.js"></script>
@@ -34,11 +33,6 @@ $produtos = $produtosRepositorio->buscarTodos();
 ?>
 
 <body>
-  <!-- Botão do WhatsApp -->
-  <a id="robbu-whatsapp-button" target="_white" href="https://api.whatsapp.com/send?phone=5511958780556&text=Ol%C3%A1,%20eu%20gostaria%20de%20fazer%20um%20pedido!%0AProduto(s):%0AQuantidade:%0AMeu%20endere%C3%A7o:%0AMeu%20nome:%0ARetirar%20ou%20entrega:">
-    <div class="rwb-tooltip" style="background-color: #fff;">Faça o seu pedido agora!</div>
-    <img src="https://cdn.positus.global/production/resources/robbu/whatsapp-button/whatsapp-icon.svg">
-  </a>
 
   <nav class="navbar navbar-expand-sm navbar-custom navbar-dark fixed-top">
     <div class="container-fluid">
@@ -158,6 +152,7 @@ $produtos = $produtosRepositorio->buscarTodos();
           <div class="company-info-wrapper">
             <div class="company-info-box">
               <h2>Sobre a empresa</h2>
+              <br>
               <div class="company-info">
                 <!-- Imagem da fachada -->
                 <div class="faixada">
