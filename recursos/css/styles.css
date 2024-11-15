@@ -297,32 +297,29 @@ body {
 
 .company-info-wrapper {
   display: flex;
-  flex-direction: column;
   gap: 2rem;
 }
 
 .company-info-box {
+  flex: 7; /* Ocupa 70% */
   border: 1px solid #ddd;
   border-radius: 1rem;
   box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.1);
   padding: 3rem 4rem;
 }
 
-.company-info-box h2 {
-  margin-bottom: 1rem;
-}
-
 .contatos-box {
+  flex: 3; /* Ocupa 30% */
   border: 1px solid #ddd;
   border-radius: 1rem;
   box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.1);
   text-align: right;
   padding: 4rem;
-  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
+
 
 .contatos-box .contato a {
   color: inherit;
@@ -463,6 +460,7 @@ h2,
 
 .copyright {
   text-align: center;
+  margin-top: 1rem;
 }
 
 .menu-container {
