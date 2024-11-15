@@ -7,7 +7,7 @@ html, body {
 }
 
 body {
-  background-image: url('../imagens/bg.jpg');
+  background: radial-gradient(circle at center, #1D826E, #145E4A, #0D3B2E);
   background-size: cover;
   background-position: center;
   color: white;
