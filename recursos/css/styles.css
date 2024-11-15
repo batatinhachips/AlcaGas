@@ -205,7 +205,6 @@ body {
 .btn.btn-light.ms-2 {
   max-width: 100%;
   font-size: 6px;
-  margin-top: 2rem;
 }
 }
 
@@ -417,7 +416,7 @@ h2,
 #footer .footer-top {
   background: #145c50;
   border-bottom: 0.1rem solid #222;
-  padding: 1rem 0;
+  padding: 2rem 0 0 0;
 }
 
 #footer .footer-info,
