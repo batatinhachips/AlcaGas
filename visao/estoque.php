@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="recursos/imagens/icon.png" type="image/png">
     <link href="../recursos/css/bootstrap.min.css" rel="stylesheet">
     <title>Controle de Vendas - Alcântara Gás</title>
     <script src="../recursos/js/jquery-3.5.1.min.js"></script>
