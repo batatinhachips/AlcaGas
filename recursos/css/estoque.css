@@ -9,7 +9,7 @@ html, body {
 
 /* Background e centralização para a página de vendas */
 body {
-    background-image: url('../imagens/bg2.png');
+    background: radial-gradient(circle at center, #1D826E, #145E4A, #0D3B2E);
     background-size: cover;
     background-position: center;
     color: #333;
@@ -21,6 +21,11 @@ body {
     overflow-y: auto;
 }
 
+
+.vendas {
+    margin-bottom: 10rem;
+}
+
 .container {
     max-width: 50rem;
     margin-top: 3rem;
@@ -28,10 +33,6 @@ body {
     background-color: #fff;
     border-radius: 0.5rem;
     box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.1);
-}
-
-.vendas {
-    margin-bottom: 10rem;
 }
 
 
