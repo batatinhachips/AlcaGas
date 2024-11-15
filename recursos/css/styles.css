@@ -555,3 +555,7 @@ h2,
 .dropdown-content li a:hover {
   text-decoration: underline;
 }
+
+.row {
+  align-items: center;
+}
