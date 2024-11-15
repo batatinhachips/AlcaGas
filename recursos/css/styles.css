@@ -296,6 +296,23 @@ body {
   .contatos-box {
     text-align: center;
   }
+
+  .company-info {
+    flex-direction: column;
+    align-items: center; /* Centraliza a imagem e o texto */
+  }
+
+  .company-info .faixada,
+  .company-info .info-text {
+    flex: unset;
+    width: 100%; /* Faz com que ocupem a largura total */
+    text-align: center; /* Centraliza o texto para melhor aparência */
+  }
+
+  .company-info .faixada img {
+    width: 100%; /* Garante que a imagem ocupe a largura total no celular */
+    max-width: 300px; /* Define um limite para a largura da imagem */
+  }
 }
 
 @media (max-width: 576px) {
