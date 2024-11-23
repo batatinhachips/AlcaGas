@@ -3,132 +3,144 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="recursos/imagens/icon.png" type="image/png">
     <link href="../recursos/css/bootstrap.min.css" rel="stylesheet">
-    <title>Controle de Vendas - Alcântara Gás</title>
-    <script src="../recursos/js/jquery-3.5.1.min.js"></script>
-    <script src="../recursos/js/script.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <title>Estoque - Cadastro de Itens</title>
+    <link rel="stylesheet" href="../recursos/css/pedidos.css">
+    <link href="../recursos/imagens/icon.png" rel="icon">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="../recursos/css/estoque.css">
+    <script src="../recursos/js/bootstrap.bundle.min.js"></script>
 </head>
-<?php
-include '../controladora/conexao.php';
-include '../modelo/vendas.php';
-include '../repositorio/vendas_repositorio.php';
-include "../controladora/autenticacao.php";
-
-$vendasRepositorio = new estoqueRepositorio($conn);
-$vendas = $vendasRepositorio->buscarTodasVendas();
-$totalVendas = $vendasRepositorio->somarTotais();
-
-
-?>
 
 <body>
-<div class="container mt-5 estoque">
-<form action="../controladora/processar_vendas.php" method="POST" enctype="multipart/form-data">
-        <label for="total_produtos" class="titulo-campo">Estoque:</label>
-        <input type="text" id="total_produtos" name="total_produtos" class="custom-input">
-        <input type="submit" name="cadastro" class="btn btn-dark" value="enviar">
+<?php
+include '../controladora/conexao.php';
+include '../modelo/produtos.php';
+include '../repositorio/produtos_repositorio.php';
+include '../repositorio/estoque_repositorio.php';
+
+$produtosRepositorio = new produtoRepositorio($conn);
+$produtos = $produtosRepositorio->buscarTodos(); // Busca todos os produtos
+
+$estoqueRepositorio = new EstoqueRepositorio($conn);
+$estoqueItens = $estoqueRepositorio->listarTodos(); // Lista os itens no estoque
+?>
+
+<nav class="navbar navbar-expand-sm navbar-custom navbar-dark fixed-top">
+    <div class="container-fluid">
+      <!-- NAVBAR -->
+      <a class="navbar-brand" href="/">
+        <img src="../recursos/imagens/logo.png" alt="Logo da Empresa" style="height: 40px;">
+      </a>
+      <!-- Botões de Logar e Cadastrar -->
+      <div class="botao-admin">
+        <a class="btn btn-dark" href="admin.php" style="background-color: #222529; border-radius: 2rem; margin-top: 1rem;">Voltar</a>
+      </div>
+    </div>
+  </nav>
+
+<div class="container mt-5">
+    <h2>ESTOQUE - CADASTRO DE ITENS</h2>
+
+    <!-- Formulário para adicionar itens no estoque -->
+    <form action="../controladora/processar_estoque.php" method="POST" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="produto" class="form-label">Produto:</label>
+            <select id="produto" name="produto" class="form-control" required>
+                <option value="">Selecione um Produto</option>
+                <?php foreach ($produtos as $produto) : ?>
+                    <option value="<?= $produto->getIdProduto(); ?>" data-nome="<?= $produto->getNome(); ?>">
+                        <?= $produto->getNome(); ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="nomeProduto" class="form-label">Nome do Produto:</label>
+            <input type="text" id="nomeProduto" name="nomeProduto" class="form-control" readonly>
+        </div>
+
+        <div class="mb-3">
+            <label for="quantidade" class="form-label">Quantidade Inicial:</label>
+            <input type="number" id="quantidade" name="quantidade" class="form-control" required min="1">
+        </div>
+
+        <div class="mb-3">
+            <input type="submit" name="cadastro" class="btn btn-primary" value="Cadastrar no Estoque">
+        </div>
     </form>
-</div>
 
-
-<div class="container mt-5 vendas">
-    <h2>CONTROLE DE VENDAS</h2>
-
-    <form action="../controladora/processar_vendas.php" method="POST" enctype="multipart/form-data" style="margin-bottom: 3rem;">
-        <label for="cep" class="titulo-campo">CEP:</label>
-        <input type="text" id="cep" name="cep" class="custom-input" required maxlength="9" placeholder="00000-000">
-
-        <label for="rua"></label>
-        <input type="hidden" id="rua" name="rua" class="custom-input" value="<?= isset($estoque) ? $estoque->getRua() : ''; ?>" readonly>
-
-        <label for="numero" class="titulo-campo">Número:</label>
-        <input type="text" id="numero" name="numero" class="custom-input" required>
-
-        <label for="bairro"></label>
-        <input type="hidden" id="bairro" name="bairro" class="custom-input" value="<?= isset($estoque) ? $estoque->getBairro() : ''; ?>" readonly>
-        
-        <label for="cidade"></label>
-        <input type="hidden" id="cidade" name="cidade" class="custom-input" value="<?= isset($estoque) ? $estoque->getCidade() : ''; ?>" readonly>
-
-        <label for="produto" class="titulo-campo">Produto:</label>
-        <select id="produto" name="produto" class="custom-input" required>
-            <option value="Gás">Gás</option>
-            <option value="Agua">Agua</option>
-        </select>
-
-        <label for="quantidade" class="titulo-campo">Quantidade:</label>
-        <input type="number" id="quantidade" name="quantidade" class="custom-input" required>
-
-        <label for="preco" class="titulo-campo">Preço do Produto:</label>
-        <select id="preco" name="preco" class="custom-input" required>
-        <option value="10.00">Agua - R$ 9,99</option>
-            <option value="85.00">Gás Nacional 13kg - R$ 84,99</option>
-            <option value="95.00">Gás Liquigas 13kg - R$ 94,99</option>
-            <option value="220.00">Gás 20kg - R$ 219,99</option>
-            <option value="420.00">Gás 45kg - R$ 419,99</option>
-        </select>
-
-        <label for="formaPagamento" class="titulo-campo">Forma de Pagamento:</label>
-        <select id="formaPagamento" name="formaPagamento" class="custom-input" required>
-            <option value="Dinheiro">Dinheiro</option>
-            <option value="Cartão de Crédito">Cartão de Crédito</option>
-            <option value="Cartão de Débito">Cartão de Débito</option>
-            <option value="PIX">PIX</option>
-        </select>
-
-        <input type="submit" name="cadastro" class="btn btn-primary" value="CADASTRAR">
-    </form>
-
-    <table class="table mt-4" id="tabelaVendas">
+    <!-- Tabela para exibir o estoque -->
+    <h3>Itens no Estoque</h3>
+    <table class="table mt-4">
         <thead>
             <tr>
-                <th>ID Venda</th>
-                <th>Produto</th>
-                <th>Quantidade</th>
-                <th>Preço</th>
-                <th>Total</th>
-                <th>Forma de Pagamento</th>
-                <th>Endereço</th>
+                <th>ID Produto</th>
+                <th>Nome do Produto</th>
+                <th>Quantidade Em Estoque</th>
                 <th>Ações</th>
             </tr>
         </thead>
         <tbody>
-        <?php foreach ($vendas as $venda) : ?>
-            <tr> 
-                <td><?= $venda->getId() ?></td>
-                <td><?= $venda->getProduto() ?></td>
-                <td><?= $venda->getQuantidade() ?></td>
-                <td><?= $venda->getPreco() ?></td> 
-                <td><?= $venda->getTotal() ?></td>
-                <td><?= $venda->getFormaPagamento() ?></td>
-                <td>
-                    <strong>Rua:</strong> <?= $venda->getRua() ?><br>
-                    <strong>Número:</strong> <?= $venda->getNumero() ?><br>
-                    <strong>Bairro:</strong> <?= $venda->getBairro() ?><br>
-                    <strong>Cidade:</strong> <?= $venda->getCidade() ?>
-                </td>
+            <?php if (!empty($estoqueItens)) : ?>
+                <?php foreach ($estoqueItens as $item) : ?>
+                    <tr id="estoque-<?= $item->getIdEstoque() ?>">
+                        <td><?= $item->getIdProduto(); ?></td>
+                        <td><?= $item->getNomeProduto(); ?></td> <!-- Exibe o nome do produto -->
+                        <td><?= $item->getQuantidade(); ?></td>
 
-                <td>
-                    <form action="../controladora/processar_exclusao.php" method="POST" style="margin-top: 10px;">
-                        <input type="hidden" name="id" value="<?= $venda->getId(); ?>">
-                        <input type="hidden" name="tipo" value="vendas">
-                        <input type="submit" class="botao-excluir" value="Excluir" style="background-color: red; color: white; border: none; border-radius: 15px; padding: 6px 8px; font-weight: 500; font-family: Poppins, sans-serif; transition: background-color 0.3s;">
-                    </form>
-                    <form action="../visao/editar_estoque.php" method="POST" style="margin-bottom: 10px;">
-                        <input type="hidden" name="id" value="<?= $venda->getId(); ?>">
-                        <input type="submit" class="botao-editar" value="Editar" style="background-color: green; color: white; border: none; border-radius: 15px; padding: 6px 11px; font-weight: 500; font-family: Poppins, sans-serif;">
-                    </form>
-                </td>
-            </tr> 
-        <?php endforeach; ?>
+                        <td>
+                            <!-- Aqui você pode adicionar ações como editar ou excluir -->
+                            <button class="botao-excluir" data-id="<?= $item->getIdEstoque(); ?>" data-tipo="estoque" style="background-color: red; color: white; border: none; border-radius: 15px; padding: 6px 8px; font-weight: 500; font-family: Poppins, sans-serif; transition: background-color 0.3s; margin-top: 10px; display:inline;">
+                            Excluir
+                            </button>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php else : ?>
+                <tr>
+                    <td colspan="4" class="text-center">Nenhum item no estoque.</td>
+                </tr>
+            <?php endif; ?>
         </tbody>
     </table>
-    <?php echo "Lucro de: R$ " . number_format($totalVendas, 2, ',', '.'); ?>
 </div>
+
+<script>
+// Quando o produto é selecionado, preenche o nome do produto automaticamente
+$(document).ready(function() {
+    $('#produto').on('change', function() {
+        var nomeProduto = $(this).find('option:selected').data('nome'); // Obtém o nome do produto da opção selecionada
+        $('#nomeProduto').val(nomeProduto ? nomeProduto : ''); // Atualiza o campo nomeProduto no formulário
+    });
+});
+
+// Função para excluir um item do estoque (exemplo, pode ser modificada)
+$(document).on('click', '.botao-excluir', function() {
+    const idParaExcluir = $(this).data('id');
+    const tipo = $(this).data('tipo');
+
+    $.ajax({
+        url: '../controladora/processar_exclusao.php',
+        type: 'POST',
+        dataType: 'json',
+        data: {
+            id: idParaExcluir,
+            tipo: tipo
+        },
+        success: function(response) {
+            if (response.status === 'sucesso') {
+              $(`#estoque-${idParaExcluir}`).remove();;
+            } else {
+                alert(response.message || 'Erro ao excluir.');
+            }
+        },
+        error: function() {
+            alert('Erro na solicitação. Tente novamente.');
+        }
+    });
+});
+</script>
 
 </body>
 </html>

@@ -36,11 +36,6 @@ body {
   margin-top: 1rem; /* Aumentar margem superior */
 }
 
-/* Estilo para o botão "Voltar" */
-.btn-dark {
-  margin: 1rem; /* Margem para garantir que o botão tenha espaço */
-}
-
 .login-title h1 {
   color: #ffffff;
   font-weight: 700;
@@ -224,10 +219,6 @@ input[type="submit"]:hover {
   .login-title .logo {
     width: 100%;
     max-width: 40rem; /* Mantido o mesmo tamanho da primeira parte */
-  }
-
-  .btn-dark {
-    width: 100%; /* Botão "Voltar" ocupa toda a largura */
   }
 
   .custom-container {
