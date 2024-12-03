@@ -1,5 +1,6 @@
 <?php
-class Estoque {
+class Estoque
+{
     private $id;
     private $cep;
     private $rua;
@@ -15,10 +16,10 @@ class Estoque {
 
     public function __construct(
         $id,
-        $cep, 
-        $rua, 
-        $numero, 
-        $bairro, 
+        $cep,
+        $rua,
+        $numero,
+        $bairro,
         $cidade,
         $produto,
         $quantidade,
@@ -26,8 +27,7 @@ class Estoque {
         $total,
         $formaPagamento,
         $total_produtos,
-    ) 
-    {
+    ) {
         $this->id = $id;
         $this->cep = $cep;
         $this->rua = $rua;
@@ -40,7 +40,7 @@ class Estoque {
         $this->total = $total;
         $this->formaPagamento = $formaPagamento;
         $this->total_produtos = $total_produtos;
-        
+
         // Preenche o endereço com base no CEP, caso o CEP esteja presente
         if ($this->cep) {
             $this->preencherEndereco();
@@ -48,9 +48,10 @@ class Estoque {
     }
 
     // Método para preencher o endereço a partir do CEP
-    private function preencherEndereco() {
-        $cep = preg_replace('/[^0-9]/', '', $this->cep); // Remove caracteres não numéricos do CEP
-        if (strlen($cep) == 8) { // Verifica se o CEP tem 8 caracteres
+    private function preencherEndereco()
+    {
+        $cep = preg_replace('/[^0-9]/', '', $this->cep);
+        if (strlen($cep) == 8) {
             $url = "https://viacep.com.br/ws/{$cep}/json/";
             $json = file_get_contents($url);
             $data = json_decode($json, true);
@@ -72,100 +73,123 @@ class Estoque {
         }
     }
 
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
-    public function setId($id) {
+    public function setId($id)
+    {
         $this->id = $id;
     }
 
-    public function getCep() {
+    public function getCep()
+    {
         return $this->cep;
     }
 
-    public function setCep($cep) {
+    public function setCep($cep)
+    {
         $this->cep = $cep;
-        $this->preencherEndereco(); // Repreenche o endereço sempre que o CEP for alterado
+        $this->preencherEndereco();
     }
 
-    public function getRua() {
+    public function getRua()
+    {
         return $this->rua;
     }
 
-    public function setRua($rua) {
+    public function setRua($rua)
+    {
         $this->rua = $rua;
     }
 
-    public function getNumero() {
+    public function getNumero()
+    {
         return $this->numero;
     }
 
-    public function setNumero($numero) {
+    public function setNumero($numero)
+    {
         $this->numero = $numero;
     }
 
-    public function getBairro() {
+    public function getBairro()
+    {
         return $this->bairro;
     }
 
-    public function setBairro($bairro) {
+    public function setBairro($bairro)
+    {
         $this->bairro = $bairro;
     }
 
-    public function getCidade() {
+    public function getCidade()
+    {
         return $this->cidade;
     }
 
-    public function setCidade($cidade) {
+    public function setCidade($cidade)
+    {
         $this->cidade = $cidade;
     }
 
-    public function getProduto() {
+    public function getProduto()
+    {
         return $this->produto;
     }
 
-    public function setProduto($produto) {
+    public function setProduto($produto)
+    {
         $this->produto = $produto;
     }
 
-    public function getQuantidade() {
+    public function getQuantidade()
+    {
         return $this->quantidade;
     }
 
-    public function setQuantidade($quantidade) {
+    public function setQuantidade($quantidade)
+    {
         $this->quantidade = $quantidade;
     }
 
-    public function getPreco() {
+    public function getPreco()
+    {
         return $this->preco;
     }
 
-    public function setPreco($preco) {
+    public function setPreco($preco)
+    {
         $this->preco = $preco;
     }
 
-    public function getTotal() {
+    public function getTotal()
+    {
         return $this->total;
     }
 
-    public function setTotal($total) {
+    public function setTotal($total)
+    {
         $this->total = $total;
     }
 
-    public function getFormaPagamento() {
+    public function getFormaPagamento()
+    {
         return $this->formaPagamento;
     }
 
-    public function setFormaPagamento($formaPagamento) {
+    public function setFormaPagamento($formaPagamento)
+    {
         $this->formaPagamento = $formaPagamento;
     }
 
-    public function getTotalProdutos() {
+    public function getTotalProdutos()
+    {
         return $this->total_produtos;
     }
 
-    public function setTotalProdutos($total_produtos) {
+    public function setTotalProdutos($total_produtos)
+    {
         $this->total_produtos = $total_produtos;
     }
 }
-?>
