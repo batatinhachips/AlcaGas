@@ -1,6 +1,15 @@
 <!doctype html>
 <html lang="pt-br">
+  <?php
+session_start(); 
 
+// Verifica se o usuário está autenticado
+if (!isset($_SESSION['usuario']) || $_SESSION['idNivelUsuario'] != 2) {
+    // Se não estiver logado ou se não for admin, redireciona para a página de login ou uma página de erro
+    header("Location: formLogin.php"); // ou qualquer outra página desejada
+    exit();
+}
+?>
 <head>
   <title>SUCESSO NO CADASTRO!</title>
 
@@ -14,6 +23,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <script src="../recursos/js/jquery-3.5.1.min.js"></script>
+  <script src="../recursos/js/bootstrap.min.js"></script>
 
 </head>
 
@@ -33,9 +44,6 @@
         </form>
       </div>
     </main>
-
-    <script src="../recursos/js/jquery-3.5.1.min.js"></script>
-    <script src="../recursos/js/bootstrap.min.js"></script>
     <script>
       $(document).ready(function() {
         $('.login-title').css('display', 'flex').css('flex-direction', 'column').css('align-items', 'center');

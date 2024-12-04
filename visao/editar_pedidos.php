@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+<?php
+session_start(); 
 
+// Verifica se o usuário está autenticado
+if (!isset($_SESSION['usuario']) || $_SESSION['idNivelUsuario'] != 2) {
+    // Se não estiver logado ou se não for admin, redireciona para a página de login ou uma página de erro
+    header("Location: formLogin.php"); // ou qualquer outra página desejada
+    exit();
+}
+?>
 <head>
     <title>Editar Pedidos</title>
 
@@ -10,6 +19,9 @@
     <link href="../recursos/imagens/icon.png" rel="icon">
     <link rel="stylesheet" href="../recursos/css/pedidos.css">
     <link href="../recursos/css/bootstrap.min.css" rel="stylesheet">
+    <script src="../recursos/js/jquery-3.5.1.min.js"></script>
+    <script src="../recursos/js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 </head>
 <?php
@@ -74,10 +86,6 @@ $vendas = $vendasRepositorio->buscarTodasVendas();
             </tbody>
         </table>
     </div>
-
-    <script src="../recursos/js/jquery-3.5.1.min.js"></script>
-    <script src="../recursos/js/script.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </body>
 
 </html>

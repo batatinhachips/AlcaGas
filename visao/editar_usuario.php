@@ -1,7 +1,14 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <?php
-session_start();
+session_start(); 
+
+// Verifica se o usuário está autenticado
+if (!isset($_SESSION['usuario']) || $_SESSION['idNivelUsuario'] != 2) {
+    // Se não estiver logado ou se não for admin, redireciona para a página de login ou uma página de erro
+    header("Location: formLogin.php"); // ou qualquer outra página desejada
+    exit();
+}
 ?>
 
 <head>
@@ -19,6 +26,12 @@ session_start();
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="../recursos/js/bootstrap.bundle.min.js"></script>
+  <script src="../recursos/js/jquery-3.5.1.min.js"></script>
+  <script src="../recursos/js/popper.min.js"></script>
+  <script src="../recursos/js/script.js"></script>
 
 </head>
 <?php
@@ -160,13 +173,6 @@ $usuarios = $usuariosRepositorio->buscarTodosClientes();
     </div>
     </div>
   </section>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-  <script src="../recursos/js/bootstrap.bundle.min.js"></script>
-  <script src="../recursos/js/jquery-3.5.1.min.js"></script>
-  <script src="../recursos/js/popper.min.js"></script>
-  <script src="../recursos/js/script.js"></script>
 
 </body>
 

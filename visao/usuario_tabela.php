@@ -1,7 +1,14 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <?php
-session_start();
+session_start(); 
+
+// Verifica se o usuário está autenticado
+if (!isset($_SESSION['usuario']) || $_SESSION['idNivelUsuario'] != 2) {
+    // Se não estiver logado ou se não for admin, redireciona para a página de login ou uma página de erro
+    header("Location: formLogin.php"); // ou qualquer outra página desejada
+    exit();
+}
 ?>
 
 <head>
@@ -16,6 +23,10 @@ session_start();
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script src="../recursos/js/bootstrap.bundle.min.js"></script>
+  <script src="../recursos/js/jquery-3.5.1.min.js"></script>
+  <script src="../recursos/js/popper.min.js"></script>
+  <script src="../recursos/js/script.js"></script>
 
 </head>
 <?php
@@ -39,7 +50,6 @@ $usuarios = $usuariosRepositorio->buscarTodosClientes();
 
       <div class="botao-admin">
         <a class="btn btn-light ms-2" href="../visao/cadastrar_cliente.php">Novo Cliente</a>
-        <a class="btn btn-light ms-2" href="../visao/cadastrar_produtos.php">Novo Produto</a>
       </div>
 
       <!-- Ícone do Menu Hambúrguer -->
@@ -157,11 +167,6 @@ $usuarios = $usuariosRepositorio->buscarTodosClientes();
       });
     });
   </script>
-
-  <script src="../recursos/js/bootstrap.bundle.min.js"></script>
-  <script src="../recursos/js/jquery-3.5.1.min.js"></script>
-  <script src="../recursos/js/popper.min.js"></script>
-  <script src="../recursos/js/script.js"></script>
 
 </body>
 

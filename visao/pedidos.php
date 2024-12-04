@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+<?php
+session_start(); 
 
+// Verifica se o usuário está autenticado
+if (!isset($_SESSION['usuario']) || $_SESSION['idNivelUsuario'] != 2) {
+    // Se não estiver logado ou se não for admin, redireciona para a página de login ou uma página de erro
+    header("Location: formLogin.php"); // ou qualquer outra página desejada
+    exit();
+}
+?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -38,6 +47,16 @@
 
     $usuariosRepositorio = new usuarioRepositorio($conn);
     $usuarios = $usuariosRepositorio->buscarTodosClientes();
+
+    $registrosPorPagina = 5;
+    $paginaAtual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
+    $inicio = ($paginaAtual - 1) * $registrosPorPagina;
+    
+    // Buscando apenas os registros para a página atual
+    $vendasPaginadas = array_slice($vendas, $inicio, $registrosPorPagina);
+    
+    // Total de páginas
+    $totalPaginas = ceil(count($vendas) / $registrosPorPagina);
     ?>
 
     <nav class="navbar navbar-expand-sm navbar-custom navbar-dark fixed-top">
@@ -87,6 +106,7 @@
 
             <label for="produto" class="titulo-campo">Produto:</label>
             <select id="produto" name="produto" class="custom-input" required>
+                <option value="" disabled selected>Selecione um Produto</option> <!-- Adicionando a opção inicial -->
                 <?php foreach ($produtos as $produto) : ?>
                     <option value="<?= $produto->getIdProduto(); ?>" data-preco="<?= $produto->getPrecoProduto(); ?>">
                         <?= $produto->getNome(); ?>
@@ -98,7 +118,7 @@
             <input type="number" id="quantidade" name="quantidade" class="custom-input" required>
 
             <label for="preco" class="titulo-campo">Preço do Produto:</label>
-            <input id="preco" name="preco" class="custom-input" value="<?= $produto->getPrecoProduto(); ?>" required readonly>
+            <input id="preco" name="preco" class="custom-input" value="" required readonly>
 
             <label for="formaPagamento" class="titulo-campo">Forma de Pagamento:</label>
             <select id="formaPagamento" name="formaPagamento" class="custom-input" required>
@@ -177,9 +197,6 @@
         </table>
                 
         <p id="lucro-total">Lucro de: R$ <?= number_format($totalVendas, 2, ',', '.'); ?></p>
-        <div class="mt-4">
-                <button id="baixarPDF" class="btn btn-danger">Baixar PDF de Vendas</button>
-        </div>
     </div>
 
     <script>
@@ -193,25 +210,15 @@
 
             // Quando o usuário selecionar um produto
             $("#produto").on("change", function() {
-                var idProduto = $(this).val(); 
-                // Verifica se existe o produto no objeto totalProdutosVendidos
-                if (totalProdutoVendido[idProduto] !== undefined) {
-                    // Atualiza o campo total_produtos com a quantidade total de produtos vendidos
-                    $("#total_produtos").val(totalProdutoVendido[idProduto]);
-                } else {
-                    // Caso não exista vendas desse produto, preenche com 0
-                    $("#total_produtos").val(0);
-                }
-
-                var preco = $(this).find('option:selected').data('preco'); 
-
-                // Atualiza o campo de preço
-                if (preco !== undefined && preco !== "") {
-                    $("#preco").val(preco);
-                } else {
-                    $("#preco").val("");
-                }
-            });
+            // Obtém o preço do produto selecionado
+            var preco = $(this).find('option:selected').data('preco');
+            
+            if (preco !== undefined && preco !== "") {
+                $("#preco").val(preco); 
+            } else {
+                $("#preco").val(""); 
+            }
+        });
 
             $('#nomeCliente').select2({
                 placeholder: 'Digite o nome do cliente...',
@@ -356,33 +363,6 @@
             });
         });
 
-        
-        $(document).ready(function () {
-    $('#baixarPDF').on('click', function () {
-        $.ajax({
-            url: '../controladora/gerar_pdf_vendas.php', // Caminho para o script PHP
-            method: 'POST',
-            xhrFields: {
-                responseType: 'blob' // Necessário para receber o arquivo como um blob
-            },
-            success: function (data) {
-                // Cria um link temporário para download
-                const blob = new Blob([data], { type: 'application/pdf' });
-                const link = document.createElement('a');
-                link.href = window.URL.createObjectURL(blob);
-                link.download = 'relatorio_vendas.pdf';
-                link.click();
-
-                // Limpa o objeto para liberar memória
-                window.URL.revokeObjectURL(link.href);
-            },
-            error: function (xhr, status, error) {
-                console.error('Erro ao gerar o PDF:', error);
-                alert('Não foi possível gerar o PDF. Tente novamente.');
-            }
-        });
-    });
-});
 
     </script>
 
